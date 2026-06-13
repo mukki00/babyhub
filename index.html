@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Baby Hub – Sri Lanka's favourite premium baby & kids store. Shop smocked dresses, baby essentials, bedding, gifting & more at shopbabyhub.lk">
+  <title>Baby Hub | Premium Baby & Kids Store Sri Lanka</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<!-- ========== ANNOUNCEMENT BAR ========== -->
+<div class="announcement-bar">
+  <div class="announcement-slider">
+    <span>🚀 Enjoy island-wide delivery when you shop online! *T&C Apply &nbsp;&nbsp;|&nbsp;&nbsp; 🎁 Free shipping on orders above Rs. 15,000 &nbsp;&nbsp;|&nbsp;&nbsp; 💌 New arrivals every week — Shop Now &nbsp;&nbsp;|&nbsp;&nbsp; 🌍 International shipping available to 10+ countries &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span>🚀 Enjoy island-wide delivery when you shop online! *T&C Apply &nbsp;&nbsp;|&nbsp;&nbsp; 🎁 Free shipping on orders above Rs. 15,000 &nbsp;&nbsp;|&nbsp;&nbsp; 💌 New arrivals every week — Shop Now &nbsp;&nbsp;|&nbsp;&nbsp; 🌍 International shipping available to 10+ countries &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Left icons -->
+    <div class="header-icons">
+      <button class="hamburger icon-btn" id="mobileOpen" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <button class="icon-btn" id="searchOpen" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+
+    <!-- Logo -->
+    <div class="site-logo">
+      <a href="index.html" class="logo-link">
+        <span class="logo-script">Baby Hub</span>
+        <span class="logo-sub">Made for Baby &amp; You</span>
+      </a>
+    </div>
+
+    <!-- Right icons -->
+    <div class="header-icons">
+      <a href="account/login.html" class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="icon-btn" id="cartOpen" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-badge" style="display:none">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Nav -->
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="collection.html?c=sale" class="nav-link sale">Sale</a></li>
+        <li class="nav-item"><a href="collection.html?c=new-arrivals" class="nav-link">New Arrivals</a></li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=baby-essentials" class="nav-link has-dropdown">Baby Essentials</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h5>Feeding</h5>
+              <a href="collection.html?c=feeding-bottles">Feeding Bottles</a>
+              <a href="collection.html?c=bibs">Bibs &amp; Burp Cloths</a>
+              <a href="collection.html?c=nursing-pillows">Nursing Pillows</a>
+              <a href="collection.html?c=tableware">Tableware</a>
+              <a href="collection.html?c=nursing-cover">Nursing Covers</a>
+            </div>
+            <div class="mega-col">
+              <h5>Bathing</h5>
+              <a href="collection.html?c=bathtubs-bathers">Bathtubs &amp; Bathers</a>
+              <a href="collection.html?c=hooded-towels">Hooded Towels</a>
+              <a href="collection.html?c=bath-towels">Bath Towels</a>
+              <a href="collection.html?c=washcloths">Washcloths</a>
+            </div>
+            <div class="mega-col">
+              <h5>Diapering</h5>
+              <a href="collection.html?c=baby-diapers">Disposable Diapers</a>
+              <a href="collection.html?c=nappies-pins">Nappies &amp; Pins</a>
+              <a href="collection.html?c=changing-mat">Changing Mat</a>
+              <a href="collection.html?c=diaper-bags">Diaper Bags</a>
+              <a href="collection.html?c=baby-wipes">Baby Wipes</a>
+            </div>
+            <div class="mega-col">
+              <h5>Blankets</h5>
+              <a href="collection.html?c=hooded-blankets">Hooded Blankets</a>
+              <a href="collection.html?c=swaddling-blanket">Swaddling Blankets</a>
+              <a href="collection.html?c=fleece-blanket">Fleece Blankets</a>
+              <a href="collection.html?c=baby-carry-quilts">Carry Quilts</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=baby-gear" class="nav-link has-dropdown">Baby Gear</a>
+          <div class="dropdown">
+            <a href="collection.html?c=strollers">Strollers</a>
+            <a href="collection.html?c=car-seats">Car Seats</a>
+            <a href="collection.html?c=baby-carriers">Baby Carriers</a>
+            <a href="collection.html?c=activity-gyms">Activity Gyms</a>
+            <a href="collection.html?c=play-mats">Play Mats</a>
+            <a href="collection.html?c=baby-monitors">Baby Monitors</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=girls-clothing" class="nav-link has-dropdown">Girls Clothing</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h5>Tops &amp; Dresses</h5>
+              <a href="collection.html?c=dresses">All Dresses</a>
+              <a href="collection.html?c=smocked-dresses">Smocked Dresses</a>
+              <a href="collection.html?c=short-sleeve-dresses">Short Sleeve</a>
+              <a href="collection.html?c=long-sleeved-dresses">Long Sleeve</a>
+              <a href="collection.html?c=sleeveless-dresses">Sleeveless</a>
+              <a href="collection.html?c=tops-girl">Tops</a>
+            </div>
+            <div class="mega-col">
+              <h5>Bottoms</h5>
+              <a href="collection.html?c=girls-leggings">Leggings</a>
+              <a href="collection.html?c=girls-skirts">Skirts</a>
+              <a href="collection.html?c=bloomers">Bloomers</a>
+              <a href="collection.html?c=rompers-girl">Rompers</a>
+            </div>
+            <div class="mega-col">
+              <h5>Special</h5>
+              <a href="collection.html?c=special-occasions-girl">Special Occasions</a>
+              <a href="collection.html?c=christening-robes-girl">Christening Robes</a>
+              <a href="collection.html?c=partywear-girl">Party Wear</a>
+              <a href="collection.html?c=take-me-home-outfits-girl">Take Me Home</a>
+              <a href="collection.html?c=girls-pyjamas">Pyjamas</a>
+              <a href="collection.html?c=sleepsuits-girl">Sleepsuits</a>
+            </div>
+            <div class="mega-col">
+              <h5>Accessories</h5>
+              <a href="collection.html?c=girls-shoes">Shoes</a>
+              <a href="collection.html?c=girls-headbands">Headbands</a>
+              <a href="collection.html?c=girls-hair-clips">Hair Clips</a>
+              <a href="collection.html?c=girls-jackets">Jackets</a>
+              <a href="collection.html?c=girls-underwear">Underwear</a>
+              <a href="collection.html?c=swimwear">Swimwear</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=boys-clothing" class="nav-link has-dropdown">Boys Clothing</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h5>Tops</h5>
+              <a href="collection.html?c=t-shirts-boy">T-Shirts</a>
+              <a href="collection.html?c=shirts-boy">Shirts</a>
+              <a href="collection.html?c=tops-boy">All Tops</a>
+            </div>
+            <div class="mega-col">
+              <h5>Bottoms</h5>
+              <a href="collection.html?c=shorts-boy">Shorts</a>
+              <a href="collection.html?c=pants-boy">Pants</a>
+              <a href="collection.html?c=dungarees-boy">Dungarees</a>
+            </div>
+            <div class="mega-col">
+              <h5>Sets &amp; Others</h5>
+              <a href="collection.html?c=bloomer-sets">Bloomer Sets</a>
+              <a href="collection.html?c=boys-rompers">Rompers</a>
+              <a href="collection.html?c=rompers-and-others">Others</a>
+              <a href="collection.html?c=sleepsuits-boy">Sleepsuits</a>
+              <a href="collection.html?c=pajamas-boy">Pyjamas</a>
+            </div>
+            <div class="mega-col">
+              <h5>Special</h5>
+              <a href="collection.html?c=special-occasions-boy">Special Occasions</a>
+              <a href="collection.html?c=christening-robes-boy">Christening Robes</a>
+              <a href="collection.html?c=take-me-home-outfits-boy">Take Me Home</a>
+              <a href="collection.html?c=boys-shoes">Shoes</a>
+              <a href="collection.html?c=boys-jackets">Jackets</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=bedding" class="nav-link has-dropdown">Bedding</a>
+          <div class="dropdown">
+            <a href="collection.html?c=bedding-bundles">Bedding Bundles</a>
+            <a href="collection.html?c=cot-sheet">Cot Sheets</a>
+            <a href="collection.html?c=pillows-bumpers">Pillows &amp; Bumpers</a>
+            <a href="collection.html?c=comforter-quilt">Comforter / Quilt</a>
+            <a href="collection.html?c=girls-bedding">Girls Bedding</a>
+            <a href="collection.html?c=boys-bedding-collections">Boys Bedding</a>
+            <a href="collection.html?c=neutral-bedding-collections">Neutral Bedding</a>
+            <a href="collection.html?c=all-bedding">View All Bedding</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=furniture" class="nav-link has-dropdown">Furniture</a>
+          <div class="dropdown">
+            <a href="collection.html?c=baby-cots">Baby Cots</a>
+            <a href="collection.html?c=bassinets">Bassinets</a>
+            <a href="collection.html?c=baby-dressers">Baby Dressers</a>
+            <a href="collection.html?c=baby-wardrobes">Baby Wardrobes</a>
+            <a href="collection.html?c=nursing-chairs">Nursing Chairs</a>
+            <a href="collection.html?c=feeding-chairs">Feeding Chairs</a>
+            <a href="collection.html?c=wall-shelves">Wall Shelves</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="collection.html?c=gifting" class="nav-link has-dropdown">Gifting</a>
+          <div class="dropdown">
+            <a href="collection.html?c=gift-hampers">Gift Hampers</a>
+            <a href="collection.html?c=gift-vouchers">Gift Vouchers</a>
+            <a href="collection.html?c=personalised-gifts">Personalised Gifts</a>
+            <a href="collection.html?c=greeting-cards">Greeting Cards</a>
+            <a href="collection.html?c=gift-wrapping">Gift Wrapping</a>
+            <a href="collection.html?c=hospital-packs">Hospital Packs</a>
+            <a href="collection.html?c=corporate-baby-gifting-sri-lanka">Corporate Gifting</a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="pages/gift-registry.html" class="nav-link">Gift Registry</a></li>
+        <li class="nav-item"><a href="collection.html?c=shop-by-brand" class="nav-link">Shop By Brand</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- ========== MOBILE MENU ========== -->
+<div class="mobile-overlay" id="mobileOverlay">
+  <div class="mobile-panel" id="mobilePanel">
+    <div class="mobile-head">
+      <span class="logo-script" style="color:white">Baby Hub</span>
+      <button class="mobile-close" id="mobileClose">✕</button>
+    </div>
+    <nav class="mobile-nav">
+      <div class="mobile-nav-row"><a class="mobile-nav-link sale" href="collection.html?c=sale" style="pointer-events:all">Sale</a></div>
+      <div class="mobile-nav-row"><a class="mobile-nav-link" href="collection.html?c=new-arrivals">New Arrivals</a></div>
+      <div class="mobile-nav-row">
+        <div class="mobile-nav-link">Baby Essentials <span class="chevron">›</span></div>
+        <div class="mobile-sub">
+          <a href="collection.html?c=feeding">Feeding</a>
+          <a href="collection.html?c=bathing">Bathing</a>
+          <a href="collection.html?c=diapering">Diapering</a>
+          <a href="collection.html?c=blankets">Blankets</a>
+          <a href="collection.html?c=baby-care">Baby Care</a>
+          <a href="collection.html?c=health-safety">Health &amp; Safety</a>
+        </div>
+      </div>
+      <div class="mobile-nav-row">
+        <div class="mobile-nav-link">Baby Gear <span class="chevron">›</span></div>
+        <div class="mobile-sub">
+          <a href="collection.html?c=strollers">Strollers</a>
+          <a href="collection.html?c=car-seats">Car Seats</a>
+          <a href="collection.html?c=baby-carriers">Baby Carriers</a>
+          <a href="collection.html?c=play-mats">Play Mats</a>
+        </div>
+      </div>
+      <div class="mobile-nav-row">
+        <div class="mobile-nav-link">Girls Clothing <span class="chevron">›</span></div>
+        <div class="mobile-sub">
+          <a href="collection.html?c=dresses">Dresses</a>
+          <a href="collection.html?c=smocked-dresses">Smocked Dresses</a>
+          <a href="collection.html?c=tops-girl">Tops</a>
+          <a href="collection.html?c=rompers-girl">Rompers</a>
+          <a href="collection.html?c=special-occasions-girl">Special Occasions</a>
+          <a href="collection.html?c=girls-shoes">Shoes</a>
+        </div>
+      </div>
+      <div class="mobile-nav-row">
+        <div class="mobile-nav-link">Boys Clothing <span class="chevron">›</span></div>
+        <div class="mobile-sub">
+          <a href="collection.html?c=t-shirts-boy">T-Shirts</a>
+          <a href="collection.html?c=shorts-boy">Shorts</a>
+          <a href="collection.html?c=boys-rompers">Rompers</a>
+          <a href="collection.html?c=special-occasions-boy">Special Occasions</a>
+          <a href="collection.html?c=boys-shoes">Shoes</a>
+        </div>
+      </div>
+      <div class="mobile-nav-row">
+        <div class="mobile-nav-link">Bedding <span class="chevron">›</span></div>
+        <div class="mobile-sub">
+          <a href="collection.html?c=bedding-bundles">Bedding Bundles</a>
+          <a href="collection.html?c=girls-bedding">Girls Bedding</a>
+          <a href="collection.html?c=boys-bedding-collections">Boys Bedding</a>
+          <a href="collection.html?c=all-bedding">View All</a>
+        </div>
+      </div>
+      <div class="mobile-nav-row"><a class="mobile-nav-link" href="collection.html?c=furniture">Furniture</a></div>
+      <div class="mobile-nav-row">
+        <div class="mobile-nav-link">Gifting <span class="chevron">›</span></div>
+        <div class="mobile-sub">
+          <a href="collection.html?c=gift-hampers">Gift Hampers</a>
+          <a href="collection.html?c=gift-vouchers">Gift Vouchers</a>
+          <a href="collection.html?c=personalised-gifts">Personalised Gifts</a>
+          <a href="collection.html?c=corporate-baby-gifting-sri-lanka">Corporate Gifting</a>
+        </div>
+      </div>
+      <div class="mobile-nav-row"><a class="mobile-nav-link" href="pages/gift-registry.html">Gift Registry</a></div>
+      <div class="mobile-nav-row"><a class="mobile-nav-link" href="collection.html?c=shop-by-brand">Shop By Brand</a></div>
+    </nav>
+    <div class="mobile-footer">
+      <a href="pages/about.html">About Us</a>
+      <a href="pages/contact.html">Contact Us</a>
+      <a href="pages/locations.html">Store Locations</a>
+      <a href="pages/loyalty.html">BH Magic Loyalty</a>
+      <a href="pages/faq.html">FAQ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEARCH OVERLAY ========== -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-wrap">
+    <button class="search-close-btn" id="searchClose">✕</button>
+    <div class="search-input-row">
+      <input type="text" placeholder="Search for products, brands, themes…">
+      <button>
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="white" fill="none" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+    <p class="search-hint">Popular: Smocked Dresses &nbsp;·&nbsp; Baby Cots &nbsp;·&nbsp; Gift Hampers &nbsp;·&nbsp; Feeding Bottles</p>
+  </div>
+</div>
+
+<!-- ========== CART SIDEBAR ========== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h3>Your Cart</h3>
+    <span class="cart-head-close" id="cartClose">✕</span>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty-msg">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p>Your cart is empty</p>
+      <a href="collection.html?c=new-arrivals">Start Shopping</a>
+    </div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">Rs. 0.00</span>
+    </div>
+    <p class="cart-note">Shipping &amp; taxes calculated at checkout</p>
+    <button class="btn-checkout-main" onclick="window.location.href='cart.html'">Proceed to Checkout</button>
+    <a href="cart.html" class="btn-view-cart-main">View Cart</a>
+  </div>
+</div>
+
+<!-- ========== HERO SLIDER ========== -->
+<section class="hero">
+  <!-- Slide 1 -->
+  <div class="hero-slide active">
+    <div class="hero-bg-img" style="background-image:url('https://placehold.co/1440x600/1a2340/ffffff?text=&font=playfair-display'); background-color:#1a2340;">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2340 0%,#2d4a7a 60%,#3d6b9e 100%);"></div>
+      <div style="position:absolute;right:0;top:0;bottom:0;width:55%;background:url('https://placehold.co/800x600/c0b8d4/ffffff?text=👗+New+Collection') center/cover no-repeat;opacity:0.35;"></div>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">New Collection 2026</span>
+      <h1 class="hero-title">Where Every<br>Little Moment<br>Matters</h1>
+      <p class="hero-desc">Discover beautifully crafted clothing, nursery essentials and thoughtful gifts — all made with love for your little one.</p>
+      <div class="hero-actions">
+        <a href="collection.html?c=new-arrivals" class="btn-hero-primary">Shop New Arrivals</a>
+        <a href="collection.html?c=girls-clothing" class="btn-hero-outline">Girls Clothing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="hero-slide">
+    <div class="hero-bg-img" style="background:linear-gradient(135deg,#2d1a40 0%,#5a3470 60%,#8a5498 100%);">
+      <div style="position:absolute;right:0;top:0;bottom:0;width:55%;background:url('https://placehold.co/800x600/d4b8e0/ffffff?text=🎁+Gift+Sets') center/cover no-repeat;opacity:0.3;"></div>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Gifting Collection</span>
+      <h1 class="hero-title">The Perfect<br>Baby Gift,<br>Every Time</h1>
+      <p class="hero-desc">Explore our curated gift hampers, personalised keepsakes and luxury gift sets — beautifully wrapped and ready to delight.</p>
+      <div class="hero-actions">
+        <a href="collection.html?c=gift-hampers" class="btn-hero-primary">Shop Gift Hampers</a>
+        <a href="pages/gift-registry.html" class="btn-hero-outline">Create a Registry</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="hero-slide">
+    <div class="hero-bg-img" style="background:linear-gradient(135deg,#1a2e20 0%,#2d5a3a 60%,#4a8a5a 100%);">
+      <div style="position:absolute;right:0;top:0;bottom:0;width:55%;background:url('https://placehold.co/800x600/b8d4c0/ffffff?text=🛏️+Bedding') center/cover no-repeat;opacity:0.3;"></div>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Themed Bedding Collections</span>
+      <h1 class="hero-title">Sweet Dreams<br>Start with the<br>Right Bedding</h1>
+      <p class="hero-desc">From Peter Rabbit to Eden — discover our signature themed bedding collections designed to make every nursery magical.</p>
+      <div class="hero-actions">
+        <a href="collection.html?c=all-bedding" class="btn-hero-primary">Shop Bedding</a>
+        <a href="collection.html?c=bedding-bundles" class="btn-hero-outline">View Bundles</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="hero-slide">
+    <div class="hero-bg-img" style="background:linear-gradient(135deg,#3d2a10 0%,#7a5420 60%,#c9973c 100%);">
+      <div style="position:absolute;right:0;top:0;bottom:0;width:55%;background:url('https://placehold.co/800x600/f0d8b0/ffffff?text=⭐+Sale') center/cover no-repeat;opacity:0.3;"></div>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Mid-Season Sale</span>
+      <h1 class="hero-title">Up to 50% Off<br>Selected<br>Styles</h1>
+      <p class="hero-desc">Limited time offers on our most loved collections. Don't miss out on incredible savings across clothing, bedding and essentials.</p>
+      <div class="hero-actions">
+        <a href="collection.html?c=sale" class="btn-hero-primary">Shop the Sale</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="hero-arrow hero-prev" id="heroPrev">‹</button>
+  <button class="hero-arrow hero-next" id="heroNext">›</button>
+  <div class="hero-dots">
+    <button class="hero-dot active"></button>
+    <button class="hero-dot"></button>
+    <button class="hero-dot"></button>
+    <button class="hero-dot"></button>
+  </div>
+</section>
+
+<!-- ========== SHOP BY CATEGORY ========== -->
+<section class="section">
+  <div class="section-hd">
+    <span class="section-eyebrow">Explore</span>
+    <h2 class="section-title">Shop by Category</h2>
+    <p class="section-sub">Everything your little one needs, beautifully curated in one place</p>
+  </div>
+  <div class="cat-grid">
+    <a href="collection.html?c=girls-clothing" class="cat-card">
+      <img src="https://placehold.co/400x533/f5e6ef/5a2040?text=Girls+Clothing" alt="Girls Clothing" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Girls Clothing</div>
+        <div class="cat-count">Dresses, Tops, Rompers &amp; More</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=boys-clothing" class="cat-card">
+      <img src="https://placehold.co/400x533/e0ecf8/1a3560?text=Boys+Clothing" alt="Boys Clothing" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Boys Clothing</div>
+        <div class="cat-count">T-Shirts, Shorts, Sets &amp; More</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=baby-essentials" class="cat-card">
+      <img src="https://placehold.co/400x533/e8f5e8/1a4030?text=Baby+Essentials" alt="Baby Essentials" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Baby Essentials</div>
+        <div class="cat-count">Feeding, Bathing, Diapering &amp; More</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=bedding" class="cat-card">
+      <img src="https://placehold.co/400x533/f8f0e0/503010?text=Bedding" alt="Bedding" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Bedding</div>
+        <div class="cat-count">Themed Collections, Bundles &amp; More</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=gifting" class="cat-card">
+      <img src="https://placehold.co/400x533/fef0f8/502040?text=Gifting" alt="Gifting" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Gifting</div>
+        <div class="cat-count">Hampers, Vouchers &amp; Personalised</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=baby-gear" class="cat-card">
+      <img src="https://placehold.co/400x533/e8e0f8/201050?text=Baby+Gear" alt="Baby Gear" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Baby Gear</div>
+        <div class="cat-count">Strollers, Car Seats &amp; More</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=maternity" class="cat-card">
+      <img src="https://placehold.co/400x533/f0f8e8/204010?text=Maternity" alt="Maternity" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Maternity</div>
+        <div class="cat-count">Clothing, Nursing &amp; Care</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+    <a href="collection.html?c=furniture" class="cat-card">
+      <img src="https://placehold.co/400x533/e8f0f8/102050?text=Furniture" alt="Furniture" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info">
+        <div class="cat-name">Furniture</div>
+        <div class="cat-count">Cots, Bassinets, Wardrobes &amp; More</div>
+        <span class="cat-btn">Shop Now →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ========== NEW ARRIVALS ========== -->
+<section class="section" style="padding-top:0">
+  <div class="section-hd">
+    <span class="section-eyebrow">Just In</span>
+    <h2 class="section-title">New Arrivals</h2>
+    <p class="section-sub">Fresh styles added every week — be the first to discover</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/f5e8ef/8b2252?text=Girls+Dress" alt="Fairy Garden Smocked Dress" class="product-img-main">
+        <img src="https://placehold.co/400x533/ffe0f0/8b2252?text=Girls+Dress+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-new">New Arrival</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod001">Add to Cart</button>
+        <div class="img-dots"><span class="img-dot on"></span><span class="img-dot"></span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Fairy Garden Pastel Smocked Girls Dress</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 2,500.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 833.33</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/fff0f5/6b1a3a?text=Rose+Dress" alt="Enchanted Rose Garden Dress" class="product-img-main">
+        <img src="https://placehold.co/400x533/ffe8f2/6b1a3a?text=Rose+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-new">New Arrival</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod002">Add to Cart</button>
+        <div class="img-dots"><span class="img-dot on"></span><span class="img-dot"></span><span class="img-dot"></span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Enchanted Rose Garden Smocked Girls Dress</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 3,300.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 1,100.00</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/e8f4ff/1a3a6b?text=Blue+Dress" alt="Cloudline Classic Dress" class="product-img-main">
+        <img src="https://placehold.co/400x533/d0eaff/1a3a6b?text=Blue+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-new">New Arrival</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod003">Add to Cart</button>
+        <div class="img-dots"><span class="img-dot on"></span><span class="img-dot"></span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Cloudline Classic Smocked Girls Dress</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 2,750.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 916.66</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/eefaee/1a5030?text=Mint+Dress" alt="Summer Sun Mint Dress" class="product-img-main">
+        <img src="https://placehold.co/400x533/d0f5d0/1a5030?text=Mint+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-new">New Arrival</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod004">Add to Cart</button>
+        <div class="img-dots"><span class="img-dot on"></span><span class="img-dot"></span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Summer Sun Mint Green Stripe Smocked Dress</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 2,500.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 833.33</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/fdf0e0/60300a?text=Boys+Set" alt="Little Adventure Boys Set" class="product-img-main">
+        <img src="https://placehold.co/400x533/f5e0c0/60300a?text=Boys+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-new">New Arrival</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod005">Add to Cart</button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Little Adventure Boys Bloomer Set</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 1,950.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 650.00</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/f8f0ff/3a1060?text=Baby+Gift" alt="Luxury Baby Gift Hamper" class="product-img-main">
+        <img src="https://placehold.co/400x533/f0e0ff/3a1060?text=Hamper+Alt" alt="" class="product-img-alt">
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod006">Add to Cart</button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Luxury New Baby Gift Hamper — Premium Set</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 8,500.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 2,833.33</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/fff8e8/604010?text=Bedding+Set" alt="Eden Pink Bedding Set" class="product-img-main">
+        <img src="https://placehold.co/400x533/fff0d0/604010?text=Bedding+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-new">New Arrival</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod007">Add to Cart</button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Eden Pink Cot Bedding Bundle — 5 Piece Set</div>
+        <div class="product-price"><span class="price-from">From</span><span class="price-now">Rs. 12,500.00</span></div>
+        <div class="price-installment">3 × <strong>Rs. 4,166.66</strong> with MintPay</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://placehold.co/400x533/e8fff0/0a4020?text=Baby+Care" alt="Newborn Essentials Kit" class="product-img-main">
+        <img src="https://placehold.co/400x533/d0ffe0/0a4020?text=Kit+Alt" alt="" class="product-img-alt">
+        <span class="product-badge badge-sale">Sale</span>
+        <button class="product-wishlist" aria-label="Add to wishlist"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <button class="product-quick-add" data-id="prod008">Add to Cart</button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Newborn Essentials Baby Care Starter Kit</div>
+        <div class="product-price">
+          <span class="price-now">Rs. 3,200.00</span>
+          <span class="price-was">Rs. 4,500.00</span>
+        </div>
+        <div class="price-installment">3 × <strong>Rs. 1,066.66</strong> with MintPay</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="section-more-center">
+    <a href="collection.html?c=new-arrivals" class="section-more">View All New Arrivals →</a>
+  </div>
+</section>
+
+<!-- ========== FEATURE BANNERS ========== -->
+<div class="banners-2">
+  <a href="collection.html?c=smocked-dresses" class="banner-block">
+    <div class="banner-bg" style="background: linear-gradient(135deg,#4a1a3a,#8a3060,#c06090);"></div>
+    <div class="banner-grad"></div>
+    <div class="banner-txt">
+      <div class="banner-txt-tag">Girls Collection</div>
+      <h3 class="banner-txt-title">Smocked Dresses<br>— Handcrafted Beauty</h3>
+      <span class="btn-banner-sm">Shop Now</span>
+    </div>
+  </a>
+  <a href="collection.html?c=bedding-bundles" class="banner-block">
+    <div class="banner-bg" style="background: linear-gradient(135deg,#1a3a6a,#2d5a9a,#5080c0);"></div>
+    <div class="banner-grad"></div>
+    <div class="banner-txt">
+      <div class="banner-txt-tag">Nursery</div>
+      <h3 class="banner-txt-title">Themed Bedding<br>Bundles — Save More</h3>
+      <span class="btn-banner-sm">Shop Bundles</span>
+    </div>
+  </a>
+</div>
+
+<!-- ========== THEMED COLLECTIONS ========== -->
+<div class="themes-section" style="padding:64px 0">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div class="section-hd">
+      <span class="section-eyebrow">Bedding</span>
+      <h2 class="section-title">Themed Collections</h2>
+      <p class="section-sub">Each themed collection tells a story — find the one that speaks to your nursery</p>
+    </div>
+    <div class="themes-grid">
+      <a href="collection.html?c=peter-rabbit-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/f0efe8/3a3020?text=Peter+Rabbit" alt="Peter Rabbit"></div>
+        <span class="theme-label">Peter Rabbit</span>
+      </a>
+      <a href="collection.html?c=pooh-and-friends-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/fff8e0/806010?text=Pooh+%26+Friends" alt="Pooh & Friends"></div>
+        <span class="theme-label">Pooh &amp; Friends</span>
+      </a>
+      <a href="collection.html?c=eden-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/e8f5e0/204010?text=Eden" alt="Eden Theme"></div>
+        <span class="theme-label">Eden</span>
+      </a>
+      <a href="collection.html?c=eden-pink-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/ffe8f5/8b1a5a?text=Eden+Pink" alt="Eden Pink"></div>
+        <span class="theme-label">Eden Pink</span>
+      </a>
+      <a href="collection.html?c=mr_rabbit_theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/f5f5f5/3a3a3a?text=Mr.+Rabbit" alt="Mr Rabbit"></div>
+        <span class="theme-label">Mr. Rabbit</span>
+      </a>
+      <a href="collection.html?c=regal-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/eae0f8/3a1060?text=Regal" alt="Regal Theme"></div>
+        <span class="theme-label">Regal</span>
+      </a>
+      <a href="collection.html?c=meadow-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/eef8e0/204800?text=Meadow" alt="Meadow Theme"></div>
+        <span class="theme-label">Meadow</span>
+      </a>
+      <a href="collection.html?c=classic-white-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/f8f8f8/555555?text=Classic+White" alt="Classic White"></div>
+        <span class="theme-label">Classic White</span>
+      </a>
+      <a href="collection.html?c=dandelion-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/fff8d0/706000?text=Dandelion" alt="Dandelion"></div>
+        <span class="theme-label">Dandelion</span>
+      </a>
+      <a href="collection.html?c=savannah-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/f8e8d0/503010?text=Savannah" alt="Savannah"></div>
+        <span class="theme-label">Savannah</span>
+      </a>
+      <a href="collection.html?c=farmyard-friends-theme" class="theme-card">
+        <div class="theme-img-box"><img src="https://placehold.co/200x200/f0f8e0/304010?text=Farmyard" alt="Farmyard Friends"></div>
+        <span class="theme-label">Farmyard Friends</span>
+      </a>
+      <a href="collection.html?c=all-bedding" class="theme-card">
+        <div class="theme-img-box" style="background:var(--navy);display:flex;align-items:center;justify-content:center;color:white;font-size:26px;">🛏️</div>
+        <span class="theme-label">View All Themes</span>
+      </a>
+    </div>
+    <div class="section-more-center">
+      <a href="collection.html?c=all-bedding" class="section-more">Explore All Themes →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FEATURES STRIP ========== -->
+<div class="features-bar">
+  <div class="features-inner">
+    <div class="feat-item">
+      <span class="feat-icon">🚀</span>
+      <div>
+        <div class="feat-title">Island-Wide Delivery</div>
+        <div class="feat-text">Free shipping on orders above Rs. 15,000</div>
+      </div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🏪</span>
+      <div>
+        <div class="feat-title">3 Physical Stores</div>
+        <div class="feat-text">Colombo &amp; Kandy — visit us in person</div>
+      </div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🌍</span>
+      <div>
+        <div class="feat-title">International Shipping</div>
+        <div class="feat-text">Delivering to 10+ countries worldwide</div>
+      </div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">💎</span>
+      <div>
+        <div class="feat-title">BH Magic Loyalty</div>
+        <div class="feat-text">Earn points on every purchase</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SHOP BY BRAND ========== -->
+<div class="brands-bar">
+  <div class="brands-inner">
+    <div class="brands-label">Shop by Brand</div>
+    <div class="brands-logos">
+      <a href="collection.html?c=tommee-tippee-products" class="brand-chip">Tommee Tippee</a>
+      <a href="collection.html?c=phillips-avent" class="brand-chip">Philips Avent</a>
+      <a href="collection.html?c=chicco" class="brand-chip">Chicco</a>
+      <a href="collection.html?c=aptamil-baby-products" class="brand-chip">Aptamil</a>
+      <a href="collection.html?c=johnsons-baby-products" class="brand-chip">Johnson's</a>
+      <a href="collection.html?c=bamboo-dreams-baby-products" class="brand-chip">Bamboo Dreams</a>
+      <a href="collection.html?c=cetaphil-baby-products" class="brand-chip">Cetaphil Baby</a>
+      <a href="collection.html?c=aveeno" class="brand-chip">Aveeno</a>
+      <a href="collection.html?c=farlin-products" class="brand-chip">Farlin</a>
+      <a href="collection.html?c=mamaearth-baby-products" class="brand-chip">Mamaearth</a>
+      <a href="collection.html?c=hipp-organic-baby-products" class="brand-chip">HiPP Organic</a>
+      <a href="collection.html?c=seba-med" class="brand-chip">Sebamed</a>
+      <a href="collection.html?c=velona-products" class="brand-chip">Velona</a>
+      <a href="collection.html?c=sudocrem-baby-products" class="brand-chip">Sudocrem</a>
+      <a href="collection.html?c=shop-by-brand" class="brand-chip" style="background:var(--navy);color:white;border-color:var(--navy);">View All Brands →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ES LABEL / SIGNATURE COLLECTIONS ========== -->
+<section class="section">
+  <div class="section-hd">
+    <span class="section-eyebrow">Baby Hub Signature</span>
+    <h2 class="section-title">Our Exclusive Collections</h2>
+    <p class="section-sub">Specially curated, lovingly crafted — only at Baby Hub</p>
+  </div>
+  <div class="products-grid">
+    <a href="collection.html?c=pastel-bliss-collection" class="cat-card" style="aspect-ratio:3/4">
+      <img src="https://placehold.co/400x533/f5e8ff/4a2060?text=Pastel+Bliss" alt="Pastel Bliss" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info"><div class="cat-name">Pastel Bliss</div><div class="cat-count">New Collection</div><span class="cat-btn">Shop Now →</span></div>
+    </a>
+    <a href="collection.html?c=tiny-tropics-collection" class="cat-card" style="aspect-ratio:3/4">
+      <img src="https://placehold.co/400x533/e8fff0/0a5020?text=Tiny+Tropics" alt="Tiny Tropics" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info"><div class="cat-name">Tiny Tropics</div><div class="cat-count">Summer Collection</div><span class="cat-btn">Shop Now →</span></div>
+    </a>
+    <a href="collection.html?c=the-wildflower-edit" class="cat-card" style="aspect-ratio:3/4">
+      <img src="https://placehold.co/400x533/fff0e8/6a3010?text=Wildflower+Edit" alt="Wildflower Edit" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info"><div class="cat-name">The Wildflower Edit</div><div class="cat-count">Spring Collection</div><span class="cat-btn">Shop Now →</span></div>
+    </a>
+    <a href="collection.html?c=the-blue-edit" class="cat-card" style="aspect-ratio:3/4">
+      <img src="https://placehold.co/400x533/e0f0ff/0a2060?text=Blue+Edit" alt="The Blue Edit" class="cat-img">
+      <div class="cat-overlay"></div>
+      <div class="cat-info"><div class="cat-name">The Blue Edit</div><div class="cat-count">Boys Special</div><span class="cat-btn">Shop Now →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ========== GIFTING BANNER ========== -->
+<div class="banners-2" style="padding-top:0">
+  <a href="pages/gift-registry.html" class="banner-block">
+    <div class="banner-bg" style="background:linear-gradient(135deg,#4a3060,#8a5090,#c080b0);"></div>
+    <div class="banner-grad"></div>
+    <div class="banner-txt">
+      <div class="banner-txt-tag">Gift Registry</div>
+      <h3 class="banner-txt-title">Create Your Baby<br>Gift Registry</h3>
+      <p style="font-size:13px;opacity:0.8;margin:0 0 14px">Let family & friends know exactly what you need</p>
+      <span class="btn-banner-sm">Create Registry</span>
+    </div>
+  </a>
+  <a href="pages/loyalty.html" class="banner-block">
+    <div class="banner-bg" style="background:linear-gradient(135deg,#1a2340,#2d4080,#4060c0);"></div>
+    <div class="banner-grad"></div>
+    <div class="banner-txt">
+      <div class="banner-txt-tag">BH Magic Loyalty</div>
+      <h3 class="banner-txt-title">Earn Points,<br>Unlock Rewards</h3>
+      <p style="font-size:13px;opacity:0.8;margin:0 0 14px">Join thousands of happy Baby Hub families</p>
+      <span class="btn-banner-sm">Join Now</span>
+    </div>
+  </a>
+</div>
+
+<!-- ========== BLOG SECTION ========== -->
+<section class="section" style="padding-top:0">
+  <div class="section-hd">
+    <span class="section-eyebrow">From the Blog</span>
+    <h2 class="section-title">Tips, Guides &amp; News</h2>
+    <p class="section-sub">Expert advice and inspiration for new and growing families</p>
+  </div>
+  <div class="blog-grid">
+    <a href="blog/index.html" class="blog-card">
+      <div class="blog-img-wrap">
+        <img src="https://placehold.co/600x375/f5efe8/5a3010?text=Newborn+Guide" alt="How to Bath Your Newborn">
+      </div>
+      <div class="blog-body">
+        <div class="blog-cat">Baby Care</div>
+        <h3 class="blog-title">How to Bath Your Newborn in 7 Easy Steps</h3>
+        <p class="blog-excerpt">Bathing a newborn for the first time can feel daunting. Our step-by-step guide walks you through everything you need to know to keep your baby safe and calm.</p>
+        <div class="blog-meta"><span>February 21, 2024</span><span class="blog-read">Read More →</span></div>
+      </div>
+    </a>
+    <a href="blog/index.html" class="blog-card">
+      <div class="blog-img-wrap">
+        <img src="https://placehold.co/600x375/e8f5f0/0a4020?text=Nursery+Setup" alt="Nursery Setup Guide">
+      </div>
+      <div class="blog-body">
+        <div class="blog-cat">Nursery</div>
+        <h3 class="blog-title">The Complete Nursery Setup Checklist for New Parents</h3>
+        <p class="blog-excerpt">Everything you need to create the perfect nursery — from cot selection to bedding themes, lighting and storage solutions.</p>
+        <div class="blog-meta"><span>January 10, 2025</span><span class="blog-read">Read More →</span></div>
+      </div>
+    </a>
+    <a href="blog/index.html" class="blog-card">
+      <div class="blog-img-wrap">
+        <img src="https://placehold.co/600x375/f8eef8/401840?text=Gift+Guide" alt="Baby Gift Guide">
+      </div>
+      <div class="blog-body">
+        <div class="blog-cat">Gifting</div>
+        <h3 class="blog-title">Best Baby Shower Gifts in Sri Lanka — 2026 Guide</h3>
+        <p class="blog-excerpt">Looking for the perfect baby shower gift? Our expert picks range from personalised keepsakes to practical essentials and luxury hampers.</p>
+        <div class="blog-meta"><span>March 5, 2026</span><span class="blog-read">Read More →</span></div>
+      </div>
+    </a>
+  </div>
+  <div class="section-more-center">
+    <a href="blog/index.html" class="section-more">Read All Articles →</a>
+  </div>
+</section>
+
+<!-- ========== NEWSLETTER ========== -->
+<div class="newsletter-bar">
+  <div class="newsletter-inner">
+    <h2 class="newsletter-title">Join the Baby Hub Family</h2>
+    <p class="newsletter-sub">Sign up and be the first to hear about exclusive offers, new arrivals and events.</p>
+    <form class="newsletter-form form-newsletter">
+      <input type="email" placeholder="Enter your email address…" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <span class="logo-script">Baby Hub</span>
+      <span class="logo-sub" style="display:block;margin-bottom:14px">Made for Baby &amp; You</span>
+      <p>We are a homegrown, specialist retailer of premium quality products for babies, kids and new parents across Sri Lanka.</p>
+      <div class="footer-social">
+        <a href="#" class="soc-btn" title="Facebook">f</a>
+        <a href="#" class="soc-btn" title="Instagram">📷</a>
+        <a href="#" class="soc-btn" title="YouTube">▶</a>
+        <a href="#" class="soc-btn" title="TikTok">♪</a>
+        <a href="#" class="soc-btn" title="Pinterest">P</a>
+        <a href="#" class="soc-btn" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="collection.html?c=sale">Sale</a></li>
+        <li><a href="collection.html?c=new-arrivals">New Arrivals</a></li>
+        <li><a href="collection.html?c=baby-essentials">Baby Essentials</a></li>
+        <li><a href="collection.html?c=baby-gear">Baby Gear</a></li>
+        <li><a href="collection.html?c=girls-clothing">Girls Clothing</a></li>
+        <li><a href="collection.html?c=boys-clothing">Boys Clothing</a></li>
+        <li><a href="collection.html?c=bedding">Bedding</a></li>
+        <li><a href="collection.html?c=furniture">Furniture</a></li>
+        <li><a href="collection.html?c=gifting">Gifting</a></li>
+        <li><a href="pages/gift-registry.html">Gift Registry</a></li>
+        <li><a href="collection.html?c=shop-by-brand">Shop By Brand</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="pages/about.html">About Us</a></li>
+        <li><a href="pages/contact.html">Contact Us</a></li>
+        <li><a href="pages/locations.html">Store Locations</a></li>
+        <li><a href="pages/faq.html">FAQ</a></li>
+        <li><a href="pages/shipping.html">Shipping Information</a></li>
+        <li><a href="pages/returns.html">Returns &amp; Exchanges</a></li>
+        <li><a href="pages/international-shipping.html">International Shipping</a></li>
+        <li><a href="account/login.html">My Account</a></li>
+        <li><a href="pages/loyalty.html">BH Magic Loyalty</a></li>
+        <li><a href="collection.html?c=corporate-baby-gifting-sri-lanka">Corporate Gifting</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📍</span><span>137 Bauddhaloka Mw,<br>Colombo 04, Sri Lanka</span></div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><span>011-255-2829</span></div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📱</span><span>+94 72 226 4444</span></div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><span>online@shopbabyhub.lk</span></div>
+      <br>
+      <h4>Store Hours</h4>
+      <div class="footer-contact-item"><span class="footer-contact-icon">🕐</span><span>Open Every Day<br>9:30 AM – 9:00 PM</span></div>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <p>© 2026 Baby Hub (Pvt) Ltd. All rights reserved. | shopbabyhub.lk</p>
+    <div class="payment-methods">
+      <span class="pay-icon">Visa</span>
+      <span class="pay-icon">Master</span>
+      <span class="pay-icon">AmEx</span>
+      <span class="pay-icon">MintPay</span>
+      <span class="pay-icon">COD</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/94XXXXXXXXXX" class="wa-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Toast container -->
+<div class="toast-wrap"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
