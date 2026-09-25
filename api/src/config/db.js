@@ -1,4 +1,5 @@
 const oracledb = require('oracledb');
+const path = require('path');
 const env = require('./env');
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
@@ -14,7 +15,9 @@ async function getPool() {
     user: env.oracle.user,
     password: env.oracle.password,
     connectString: env.oracle.connectString,
-    walletLocation: env.oracle.walletLocation,
+    configDir: path.resolve(env.oracle.walletLocation),
+    walletLocation: path.resolve(env.oracle.walletLocation),
+    walletPassword: env.oracle.walletPassword,
     poolMin: 0,
     poolMax: 5,
     poolIncrement: 1,
