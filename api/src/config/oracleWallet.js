@@ -5,6 +5,7 @@ const path = require('path');
 const walletFiles = {
   cwalletSso: 'ORACLE_WALLET_CWALLET_SSO_BASE64',
   ewalletP12: 'ORACLE_WALLET_EWALLET_P12_BASE64',
+  ewalletPem: 'ORACLE_WALLET_EWALLET_PEM_BASE64',
   tnsnames: 'ORACLE_WALLET_TNSNAMES_BASE64',
   sqlnet: 'ORACLE_WALLET_SQLNET_BASE64',
 };
@@ -26,6 +27,7 @@ async function getWalletPath(configuredPath) {
         const targetName = {
           cwalletSso: 'cwallet.sso',
           ewalletP12: 'ewallet.p12',
+          ewalletPem: 'ewallet.pem',
           tnsnames: 'tnsnames.ora',
           sqlnet: 'sqlnet.ora',
         }[fileName];
