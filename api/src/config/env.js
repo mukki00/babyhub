@@ -1,8 +1,9 @@
 const path = require('path');
 const dotenv = require('dotenv');
 
+// .env is the authoritative source; override stale values that may exist in .env.local.
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
-dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+dotenv.config({ path: path.resolve(process.cwd(), '.env'), override: true });
 
 // Centralized, validated access to environment configuration.
 const required = (name, fallback) => process.env[name] ?? fallback;
