@@ -1,6 +1,6 @@
 const oracledb = require('oracledb');
-const path = require('path');
 const env = require('./env');
+const getWalletPath = require('./oracleWallet');
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 oracledb.autoCommit = true;
@@ -11,12 +11,14 @@ let pool;
 async function getPool() {
   if (pool) return pool;
 
+  const walletPath = await getWalletPath(env.oracle.walletLocation);
+
   pool = await oracledb.createPool({
     user: env.oracle.user,
     password: env.oracle.password,
     connectString: env.oracle.connectString,
-    configDir: path.resolve(env.oracle.walletLocation),
-    walletLocation: path.resolve(env.oracle.walletLocation),
+    configDir: walletPath,
+    walletLocation: walletPath,
     walletPassword: env.oracle.walletPassword,
     poolMin: 0,
     poolMax: 5,
