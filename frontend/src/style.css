@@ -147,6 +147,11 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 
 /* ---- Admin Dashboard ---- */
 .admin-wrap { max-width: var(--max-w); margin: 0 auto; padding: 32px 24px; }
+.admin-nav { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+.admin-nav-link { padding: 8px 14px; border-radius: var(--radius); font-size: 13px; font-weight: 600; color: var(--text-mid); }
+.admin-nav-link:hover { background: var(--cream); }
+.admin-nav-link.active { background: var(--navy); color: white; }
+.admin-nav .btn-secondary { margin-left: auto; }
 .admin-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
 .admin-head h1 { font-family: var(--font-serif); font-size: 26px; }
 .btn-secondary {
@@ -162,6 +167,12 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .admin-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 4px; }
 .btn-link { color: var(--navy); font-weight: 600; font-size: 13px; margin-right: 14px; background: none; }
 .btn-link.danger { color: var(--red); }
+.status-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; background: var(--border); color: var(--text-mid); }
+.status-pill.status-pending { background: #fff3cd; color: #8a6d00; }
+.status-pill.status-confirmed { background: #d4edda; color: #1e7d46; }
+.status-pill.status-cancelled { background: #f8d7da; color: var(--red); }
+.order-items-list { list-style: none; padding: 8px 0; font-size: 13px; color: var(--text-mid); }
+.order-items-list li { padding: 3px 0; }
 
 /* ---- Footer ---- */
 .site-footer { background: var(--navy); color: white; margin-top: 40px; }

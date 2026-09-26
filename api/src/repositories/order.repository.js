@@ -1,5 +1,6 @@
 const oracledb = require('oracledb');
 const { withConnection } = require('../config/db');
+const { normalizeRow, normalizeRows } = require('../utils/normalizeRow');
 
 // Orders are persisted for record-keeping; the actual confirmation happens over WhatsApp.
 const orderRepository = {
@@ -28,7 +29,7 @@ const orderRepository = {
          FROM orders
          ORDER BY created_at DESC`
       );
-      return result.rows;
+      return normalizeRows(result.rows).map(parseItems);
     });
   },
 
@@ -40,9 +41,19 @@ const orderRepository = {
          WHERE id = :id`,
         { id }
       );
-      return result.rows[0] || null;
+      const row = normalizeRow(result.rows[0]);
+      return row ? parseItems(row) : null;
     });
   },
 };
+
+function parseItems(row) {
+  if (typeof row.items !== 'string') return row;
+  try {
+    return { ...row, items: JSON.parse(row.items) };
+  } catch {
+    return row;
+  }
+}
 
 module.exports = orderRepository;

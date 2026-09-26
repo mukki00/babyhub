@@ -5,6 +5,8 @@ const getWalletPath = require('./oracleWallet');
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 oracledb.autoCommit = true;
+// Fetch CLOB columns (e.g. orders.items) as plain strings instead of Lob streams.
+oracledb.fetchAsString = [oracledb.CLOB];
 
 let pool;
 

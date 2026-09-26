@@ -40,3 +40,6 @@ export const adminUpdateProduct = (id, formData) =>
 
 export const adminDeleteProduct = (id) =>
   request(`/admin/products/${id}`, { method: 'DELETE', headers: adminHeaders() });
+
+export const adminListOrders = () => request('/admin/orders', { headers: adminHeaders() });
+export const adminGetOrder = (id) => request(`/admin/orders/${id}`, { headers: adminHeaders() });

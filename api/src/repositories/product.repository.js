@@ -1,4 +1,5 @@
 const { withConnection } = require('../config/db');
+const { normalizeRow, normalizeRows } = require('../utils/normalizeRow');
 
 // Data access only: raw SQL against the Oracle Autonomous Database. No business logic.
 const productRepository = {
@@ -9,7 +10,7 @@ const productRepository = {
          FROM products
          ORDER BY created_at DESC`
       );
-      return result.rows;
+      return normalizeRows(result.rows);
     });
   },
 
@@ -21,7 +22,7 @@ const productRepository = {
          WHERE id = :id`,
         { id }
       );
-      return result.rows[0] || null;
+      return normalizeRow(result.rows[0]) || null;
     });
   },
 

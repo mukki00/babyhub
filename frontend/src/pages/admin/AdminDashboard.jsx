@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { adminListProducts, adminCreateProduct, adminUpdateProduct, adminDeleteProduct } from '../../api.js';
-import { clearAdminToken } from '../../adminAuth.js';
+import AdminNav from '../../components/AdminNav.jsx';
 
 const EMPTY_FORM = { name: '', description: '', price: '', image: null };
 
@@ -11,7 +10,6 @@ export default function AdminDashboard() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
-  const navigate = useNavigate();
 
   function load() {
     setStatus('loading');
@@ -24,11 +22,6 @@ export default function AdminDashboard() {
   }
 
   useEffect(load, []);
-
-  function handleLogout() {
-    clearAdminToken();
-    navigate('/admin/login');
-  }
 
   function startEdit(product) {
     setEditingId(product.id);
@@ -77,11 +70,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-wrap">
+      <AdminNav />
       <div className="admin-head">
         <h1>Product Management</h1>
         <div>
           <button className="btn-secondary" onClick={startCreate}>+ New Product</button>
-          <button className="btn-secondary" onClick={handleLogout}>Log Out</button>
         </div>
       </div>
 

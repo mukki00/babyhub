@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { createOrder } from '../api.js';
 
-const WHATSAPP_NUMBER = '94XXXXXXXXXX';
+const WHATSAPP_NUMBER = '+94789299383';
 
 export default function Cart() {
   const { items, total, changeQty, removeItem, clear } = useCart();
@@ -26,12 +26,13 @@ export default function Cart() {
     setPlacing(true);
     try {
       await createOrder({
-        customer_name: name,
-        customer_phone: phone,
+        customerName: name,
+        customerPhone: phone,
         items: items.map((i) => ({ productId: i.id, name: i.name, qty: i.qty, price: i.price })),
         total,
       });
-    } catch {
+    } catch (err) {
+      console.error('Failed to persist order:', err);
       // Persisting the order is optional — still proceed to WhatsApp checkout.
     }
     const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;

@@ -34,8 +34,8 @@ const productService = {
     const existing = await productRepository.findById(id);
     if (!existing) throw new ApiError(404, 'Product not found');
 
-    let imageUrl = existing.IMAGE_URL ?? existing.image_url;
-    let imagePublicId = existing.IMAGE_PUBLIC_ID ?? existing.image_public_id;
+    let imageUrl = existing.image_url;
+    let imagePublicId = existing.image_public_id;
 
     if (imageFile) {
       if (imagePublicId) await imageService.deleteImage(imagePublicId);
@@ -45,9 +45,9 @@ const productService = {
     }
 
     await productRepository.update(id, {
-      name: name ?? existing.NAME,
-      description: description ?? existing.DESCRIPTION,
-      price: price ?? existing.PRICE,
+      name: name ?? existing.name,
+      description: description ?? existing.description,
+      price: price ?? existing.price,
       imageUrl,
       imagePublicId,
     });
@@ -59,7 +59,7 @@ const productService = {
     const existing = await productRepository.findById(id);
     if (!existing) throw new ApiError(404, 'Product not found');
 
-    const imagePublicId = existing.IMAGE_PUBLIC_ID ?? existing.image_public_id;
+    const imagePublicId = existing.image_public_id;
     if (imagePublicId) await imageService.deleteImage(imagePublicId);
 
     await productRepository.remove(id);
