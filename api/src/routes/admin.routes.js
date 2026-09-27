@@ -21,5 +21,10 @@ router.get('/orders', orderController.list);
 router.get('/orders/:id', orderController.getById);
 router.patch('/orders/:id/shipped', orderController.markShipped);
 router.patch('/orders/:id/delivered', orderController.setDelivered);
+router.patch('/orders/:id/paid', orderController.setPaid);
+router.patch('/orders/:id/returned', orderController.markReturned);
+router.patch('/orders/:id/received', orderController.setReceived);
+router.patch('/orders/:id/reship', orderController.reshipReturned);
+router.patch('/orders/:id/refund', orderController.refundReturned);
 
 module.exports = router;

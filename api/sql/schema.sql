@@ -24,6 +24,8 @@ CREATE TABLE orders (
   items          CLOB NOT NULL,       -- JSON array of { productId, name, qty, price }
   total          NUMBER(10, 2),
   status         VARCHAR2(20) DEFAULT 'PENDING',
+  paid           NUMBER(1) DEFAULT 0 NOT NULL,
   delivered      NUMBER(1) DEFAULT 0 NOT NULL,
+  received       NUMBER(1) DEFAULT 0 NOT NULL,
   created_at     TIMESTAMP DEFAULT SYSTIMESTAMP
 );

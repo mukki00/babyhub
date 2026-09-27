@@ -51,3 +51,21 @@ export const adminSetOrderDelivered = (id, delivered) =>
     body: JSON.stringify({ delivered }),
     headers: adminHeaders(),
   });
+export const adminSetOrderPaid = (id, paid) =>
+  request(`/admin/orders/${id}/paid`, {
+    method: 'PATCH',
+    body: JSON.stringify({ paid }),
+    headers: adminHeaders(),
+  });
+export const adminMarkOrderReturned = (id) =>
+  request(`/admin/orders/${id}/returned`, { method: 'PATCH', headers: adminHeaders() });
+export const adminSetOrderReceived = (id, received) =>
+  request(`/admin/orders/${id}/received`, {
+    method: 'PATCH',
+    body: JSON.stringify({ received }),
+    headers: adminHeaders(),
+  });
+export const adminReshipReturnedOrder = (id) =>
+  request(`/admin/orders/${id}/reship`, { method: 'PATCH', headers: adminHeaders() });
+export const adminRefundReturnedOrder = (id) =>
+  request(`/admin/orders/${id}/refund`, { method: 'PATCH', headers: adminHeaders() });

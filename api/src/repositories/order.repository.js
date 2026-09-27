@@ -25,7 +25,7 @@ const orderRepository = {
   async findAll() {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, customer_name, customer_phone, items, total, status, delivered, created_at
+        `SELECT id, customer_name, customer_phone, items, total, status, paid, delivered, received, created_at
          FROM orders
          ORDER BY created_at DESC`
       );
@@ -36,7 +36,7 @@ const orderRepository = {
   async findById(id) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, customer_name, customer_phone, items, total, status, delivered, created_at
+        `SELECT id, customer_name, customer_phone, items, total, status, paid, delivered, received, created_at
          FROM orders
          WHERE id = :id`,
         { id }
@@ -49,7 +49,7 @@ const orderRepository = {
   async markShipped(id) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `UPDATE orders SET status = 'SHIPPED' WHERE id = :id`,
+        `UPDATE orders SET status = 'SHIPPED', delivered = 1 WHERE id = :id`,
         { id }
       );
       return result.rowsAffected > 0;
@@ -61,6 +61,63 @@ const orderRepository = {
       const result = await conn.execute(
         `UPDATE orders SET delivered = :delivered WHERE id = :id`,
         { id, delivered: delivered ? 1 : 0 }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async setPaid(id, paid) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders SET paid = :paid
+         WHERE id = :id AND status = 'REFUNDED'`,
+        { id, paid: paid ? 1 : 0 }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async markReturned(id) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders
+         SET status = 'RETURNED'
+         WHERE id = :id AND status = 'SHIPPED' AND delivered = 1`,
+        { id }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async setReceived(id, received) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders SET received = :received
+         WHERE id = :id AND status = 'RETURNED'`,
+        { id, received: received ? 1 : 0 }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async reshipReturned(id) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders
+         SET status = 'SHIPPED', delivered = 0, received = 0
+         WHERE id = :id AND status = 'RETURNED' AND received = 1`,
+        { id }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async refundReturned(id) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders SET status = 'REFUNDED'
+         WHERE id = :id AND status = 'RETURNED' AND received = 1`,
+        { id }
       );
       return result.rowsAffected > 0;
     });

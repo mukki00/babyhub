@@ -1,0 +1,1 @@
+ALTER TABLE orders ADD (received NUMBER(1) DEFAULT 0 NOT NULL);
