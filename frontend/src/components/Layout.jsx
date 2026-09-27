@@ -19,7 +19,11 @@ export default function Layout() {
             <span className="logo-script"><span className="logo-baby">baby</span><span className="logo-hub">hub</span></span>
             <span className="logo-sub">Care &amp; Comfort</span>
           </Link>
-          <Link to="/cart" className="icon-btn" aria-label="Cart">
+          <Link
+            to="/cart"
+            className={`icon-btn${count > 0 ? ' cart-active' : ''}`}
+            aria-label={count > 0 ? `Cart, ${count} ${count === 1 ? 'item' : 'items'}` : 'Cart'}
+          >
             <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             {count > 0 && <span className="cart-badge">{count}</span>}
           </Link>
