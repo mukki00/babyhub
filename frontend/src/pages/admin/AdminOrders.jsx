@@ -23,6 +23,8 @@ export default function AdminOrders() {
   const [updatingId, setUpdatingId] = useState(null);
   const [actionMessage, setActionMessage] = useState('');
   const [actionError, setActionError] = useState('');
+  const [confirmation, setConfirmation] = useState(null);
+  const [secondsRemaining, setSecondsRemaining] = useState(10);
 
   useEffect(() => {
     adminListOrders()
@@ -33,7 +35,24 @@ export default function AdminOrders() {
       .catch(() => setStatus('error'));
   }, []);
 
-  const activeOrders = orders.filter((order) => !['SHIPPED', 'RETURNED'].includes(order.status?.toUpperCase()));
+  useEffect(() => {
+    if (confirmation?.phase !== 'countdown') return undefined;
+
+    const deadline = Date.now() + 10000;
+    const timer = window.setInterval(() => {
+      const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      setSecondsRemaining(seconds);
+      if (seconds === 0) {
+        window.clearInterval(timer);
+        setConfirmation(null);
+        updateOrder(confirmation.orderId, confirmation.request, confirmation.successMessage);
+      }
+    }, 100);
+
+    return () => window.clearInterval(timer);
+  }, [confirmation?.phase]);
+
+  const activeOrders = orders.filter((order) => order.status?.toUpperCase() === 'PENDING');
   const shippedOrders = orders.filter((order) => order.status?.toUpperCase() === 'SHIPPED');
   const returnedOrders = orders.filter((order) => order.status?.toUpperCase() === 'RETURNED');
   const refundedOrders = orders.filter((order) => order.status?.toUpperCase() === 'REFUNDED');
@@ -58,6 +77,16 @@ export default function AdminOrders() {
     } finally {
       setUpdatingId(null);
     }
+  }
+
+  function askForConfirmation(orderId, title, message, request, successMessage) {
+    setConfirmation({ orderId, title, message, request, successMessage, phase: 'confirm' });
+    setSecondsRemaining(10);
+  }
+
+  function beginCountdown() {
+    setSecondsRemaining(10);
+    setConfirmation((current) => current ? { ...current, phase: 'countdown' } : current);
   }
 
   function isDelivered(order) {
@@ -231,8 +260,10 @@ export default function AdminOrders() {
                               className="btn-secondary ship-order-btn"
                               type="button"
                               disabled={updating}
-                              onClick={() => updateOrder(
+                              onClick={() => askForConfirmation(
                                 order.id,
+                                'Mark this order shipped?',
+                                'Please make sure payment is completed. Once shipped, we cannot undo the action.',
                                 () => adminMarkOrderShipped(order.id),
                                 'Order marked shipped and moved to the Shipped tab.'
                               )}
@@ -245,8 +276,10 @@ export default function AdminOrders() {
                               className="btn-secondary ship-order-btn returned-order-btn"
                               type="button"
                               disabled={updating}
-                              onClick={() => updateOrder(
+                              onClick={() => askForConfirmation(
                                 order.id,
+                                'Mark this order returned?',
+                                'Please make sure the item(s) have been returned. Once returned, we cannot undo the action.',
                                 () => adminMarkOrderReturned(order.id),
                                 'Order marked returned and moved to the Returned tab.'
                               )}
@@ -260,8 +293,10 @@ export default function AdminOrders() {
                                 className="btn-secondary ship-order-btn"
                                 type="button"
                                 disabled={updating}
-                                onClick={() => updateOrder(
+                                onClick={() => askForConfirmation(
                                   order.id,
+                                  'Ship this order again?',
+                                  'Do you want to ship it again? Once shipped, we cannot undo the action.',
                                   () => adminReshipReturnedOrder(order.id),
                                   'Order shipped again and moved to the Shipped tab.'
                                 )}
@@ -272,8 +307,10 @@ export default function AdminOrders() {
                                 className="btn-secondary ship-order-btn refund-order-btn"
                                 type="button"
                                 disabled={updating}
-                                onClick={() => updateOrder(
+                                onClick={() => askForConfirmation(
                                   order.id,
+                                  'Refund this payment?',
+                                  'Do you want to refund the payment? Once it is refunded, we cannot undo the action.',
                                   () => adminRefundReturnedOrder(order.id),
                                   'Order refunded and moved to the Refund tab.'
                                 )}
@@ -302,6 +339,46 @@ export default function AdminOrders() {
             </table>
           )}
         </>
+      )}
+
+      {confirmation && (
+        <div className="confirm-overlay">
+          <section
+            className="confirm-dialog"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="order-confirm-title"
+            aria-describedby="order-confirm-message"
+          >
+            <h2 id="order-confirm-title">{confirmation.title}</h2>
+            <p id="order-confirm-message">{confirmation.message}</p>
+            {confirmation.phase === 'countdown' ? (
+              <>
+                <p className="confirm-countdown" role="timer" aria-live="off">
+                  Action will proceed in <strong>{secondsRemaining}</strong> seconds.
+                </p>
+                <div className="confirm-actions">
+                  <button
+                    className="btn-secondary confirm-cancel"
+                    type="button"
+                    onClick={() => setConfirmation(null)}
+                  >
+                    Cancel action
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="confirm-actions">
+                <button className="btn-secondary" type="button" onClick={() => setConfirmation(null)}>
+                  Cancel
+                </button>
+                <button className="btn-primary confirm-yes" type="button" onClick={beginCountdown}>
+                  Yes
+                </button>
+              </div>
+            )}
+          </section>
+        </div>
       )}
     </div>
   );

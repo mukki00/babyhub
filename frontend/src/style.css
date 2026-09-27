@@ -221,6 +221,16 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .order-delivered input { accent-color: var(--navy); }
 .order-items-list { list-style: none; padding: 8px 0; font-size: 13px; color: var(--text-mid); }
 .order-items-list li { padding: 3px 0; }
+.confirm-overlay { position: fixed; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(22, 34, 48, 0.52); }
+.confirm-dialog { width: min(100%, 440px); padding: 26px; border: 1px solid var(--border); border-radius: 8px; background: white; box-shadow: 0 16px 48px rgba(20, 35, 50, 0.24); }
+.confirm-dialog h2 { margin-bottom: 10px; color: var(--text-dark); font-size: 20px; }
+.confirm-dialog > p { color: var(--text-mid); font-size: 14px; }
+.confirm-dialog .confirm-countdown { margin-top: 18px; color: var(--navy-hover); font-size: 15px; }
+.confirm-countdown strong { color: var(--brand-pink); font-size: 20px; font-variant-numeric: tabular-nums; }
+.confirm-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+.confirm-actions .btn-secondary { margin-left: 0; }
+.confirm-yes { width: auto; padding: 9px 20px; }
+.confirm-cancel { border-color: var(--brand-pink); color: var(--brand-pink); }
 
 /* ---- Footer ---- */
 .site-footer { background: var(--white); color: var(--text-mid); margin-top: 40px; border-top: 1px solid var(--border); }
