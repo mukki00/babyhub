@@ -20,6 +20,21 @@ const orderService = {
     if (!order) throw new ApiError(404, 'Order not found');
     return order;
   },
+
+  async markOrderShipped(id) {
+    const updated = await orderRepository.markShipped(id);
+    if (!updated) throw new ApiError(404, 'Order not found');
+    return orderRepository.findById(id);
+  },
+
+  async setOrderDelivered(id, delivered) {
+    if (typeof delivered !== 'boolean') {
+      throw new ApiError(400, 'delivered must be a boolean');
+    }
+    const updated = await orderRepository.setDelivered(id, delivered);
+    if (!updated) throw new ApiError(404, 'Order not found');
+    return orderRepository.findById(id);
+  },
 };
 
 module.exports = orderService;

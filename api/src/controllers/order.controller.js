@@ -16,6 +16,16 @@ const orderController = {
     const order = await orderService.getOrder(req.params.id);
     res.json(order);
   }),
+
+  markShipped: asyncHandler(async (req, res) => {
+    const order = await orderService.markOrderShipped(req.params.id);
+    res.json(order);
+  }),
+
+  setDelivered: asyncHandler(async (req, res) => {
+    const order = await orderService.setOrderDelivered(req.params.id, req.body.delivered);
+    res.json(order);
+  }),
 };
 
 module.exports = orderController;

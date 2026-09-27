@@ -25,7 +25,7 @@ const orderRepository = {
   async findAll() {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, customer_name, customer_phone, items, total, status, created_at
+        `SELECT id, customer_name, customer_phone, items, total, status, delivered, created_at
          FROM orders
          ORDER BY created_at DESC`
       );
@@ -36,13 +36,33 @@ const orderRepository = {
   async findById(id) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, customer_name, customer_phone, items, total, status, created_at
+        `SELECT id, customer_name, customer_phone, items, total, status, delivered, created_at
          FROM orders
          WHERE id = :id`,
         { id }
       );
       const row = normalizeRow(result.rows[0]);
       return row ? parseItems(row) : null;
+    });
+  },
+
+  async markShipped(id) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders SET status = 'SHIPPED' WHERE id = :id`,
+        { id }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async setDelivered(id, delivered) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders SET delivered = :delivered WHERE id = :id`,
+        { id, delivered: delivered ? 1 : 0 }
+      );
+      return result.rowsAffected > 0;
     });
   },
 };

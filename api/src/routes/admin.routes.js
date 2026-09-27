@@ -19,5 +19,7 @@ router.delete('/products/:id', productController.remove);
 
 router.get('/orders', orderController.list);
 router.get('/orders/:id', orderController.getById);
+router.patch('/orders/:id/shipped', orderController.markShipped);
+router.patch('/orders/:id/delivered', orderController.setDelivered);
 
 module.exports = router;

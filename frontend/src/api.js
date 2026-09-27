@@ -43,3 +43,11 @@ export const adminDeleteProduct = (id) =>
 
 export const adminListOrders = () => request('/admin/orders', { headers: adminHeaders() });
 export const adminGetOrder = (id) => request(`/admin/orders/${id}`, { headers: adminHeaders() });
+export const adminMarkOrderShipped = (id) =>
+  request(`/admin/orders/${id}/shipped`, { method: 'PATCH', headers: adminHeaders() });
+export const adminSetOrderDelivered = (id, delivered) =>
+  request(`/admin/orders/${id}/delivered`, {
+    method: 'PATCH',
+    body: JSON.stringify({ delivered }),
+    headers: adminHeaders(),
+  });

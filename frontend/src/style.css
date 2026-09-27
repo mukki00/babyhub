@@ -180,11 +180,18 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .admin-nav .btn-secondary { margin-left: auto; }
 .admin-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
 .admin-head h1 { font-family: var(--font-serif); font-size: 26px; }
+.order-tabs { display: flex; gap: 4px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+.order-tab { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 2px solid transparent; background: transparent; color: var(--text-mid); font-size: 13px; font-weight: 600; }
+.order-tab[aria-selected="true"] { border-bottom-color: var(--brand-pink); color: var(--navy-hover); }
+.order-tab-count { color: var(--text-light); font-size: 12px; }
+.order-action-message { color: #1e7d46; font-size: 13px; margin-bottom: 12px; }
 .btn-secondary {
   padding: 9px 18px; background: white; border: 1px solid var(--border); border-radius: var(--radius);
   font-size: 13px; font-weight: 600; margin-left: 8px;
 }
 .btn-secondary:hover { border-color: var(--navy); }
+.ship-order-btn { margin-left: 0; white-space: nowrap; }
+.ship-order-btn:disabled { cursor: wait; opacity: 0.6; }
 .admin-form { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; max-width: 480px; }
 .admin-form h3 { margin-bottom: 16px; }
 .admin-form-actions { display: flex; gap: 10px; margin-top: 8px; }
@@ -205,6 +212,9 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .status-pill.status-pending { background: #fff3cd; color: #8a6d00; }
 .status-pill.status-confirmed { background: #d4edda; color: #1e7d46; }
 .status-pill.status-cancelled { background: #f8d7da; color: var(--red); }
+.status-pill.status-shipped { background: #dceeff; color: #27608a; }
+.order-delivered { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.order-delivered input { accent-color: var(--navy); }
 .order-items-list { list-style: none; padding: 8px 0; font-size: 13px; color: var(--text-mid); }
 .order-items-list li { padding: 3px 0; }
 
