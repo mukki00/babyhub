@@ -5,8 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600&family=Fredoka:wght@500;600;700&display=swap');
 
 :root {
-  --navy: #1a2340;
-  --navy-hover: #0f1726;
+  --navy: #5a93c6;
+  --navy-hover: #427daf;
+  --brand-pink: #cd579a;
   --cream: #faf6f1;
   --white: #ffffff;
   --red: #e84545;
@@ -15,7 +16,7 @@
   --text-dark: #1a1a2e;
   --text-mid: #4a4a6a;
   --text-light: #888899;
-  --border: #165c7d;
+  --border: #d6e2ec;
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
   --radius: 6px;
   --font-body: 'Poppins', sans-serif;
@@ -40,25 +41,27 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .page-wrap > main { flex: 1 0 auto; }
 .page-wrap > .site-footer { flex-shrink: 0; }
 
-.logo-script { font-family: var(--font-logo); font-size: 28px; font-weight: 600; color: var(--white); letter-spacing: 0.2px; }
-.logo-sub { font-size: 10px; color: rgba(255, 255, 255, 0.6); letter-spacing: 2px; text-transform: uppercase; }
+.logo-script { display: block; font-family: var(--font-logo); font-size: 32px; font-weight: 700; line-height: 1; }
+.logo-baby { color: var(--navy); }
+.logo-hub { color: var(--brand-pink); }
+.logo-sub { display: block; margin-top: 4px; font-size: 11px; color: var(--text-light); }
 
 /* ---- Header ---- */
-.site-header { background: var(--navy); position: sticky; top: 0; z-index: 100; }
+.site-header { background: var(--white); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
 .header-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 16px 24px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.icon-btn { color: white; position: relative; display: flex; align-items: center; }
+.icon-btn { color: var(--navy); position: relative; display: flex; align-items: center; }
 .icon-btn svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; }
 .cart-badge {
-  position: absolute; top: -8px; right: -10px; background: var(--red); color: white;
+  position: absolute; top: -8px; right: -10px; background: var(--brand-pink); color: white;
   width: 18px; height: 18px; border-radius: 50%; font-size: 11px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
 }
 
 /* ---- Hero ---- */
-.hero { background: linear-gradient(135deg, #1a2340, #2e3f6f); padding: 60px 24px; text-align: center; color: white; }
+.hero { background: linear-gradient(135deg, #5a93c6, #cd579a); padding: 60px 24px; text-align: center; color: white; }
 .hero-content { max-width: 640px; margin: 0 auto; }
 .hero-eyebrow { display: inline-block; background: var(--gold); padding: 4px 14px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 20px; margin-bottom: 14px; }
 .hero-title { font-family: var(--font-serif); font-size: 36px; font-weight: 500; margin-bottom: 12px; }
@@ -183,13 +186,14 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .order-items-list li { padding: 3px 0; }
 
 /* ---- Footer ---- */
-.site-footer { background: var(--navy); color: white; margin-top: 40px; }
+.site-footer { background: var(--white); color: var(--text-mid); margin-top: 40px; border-top: 1px solid var(--border); }
 .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 40px 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.footer-inner p { font-size: 13px; opacity: 0.7; margin-top: 8px; max-width: 320px; }
+.footer-inner p { font-size: 13px; color: var(--text-light); margin-top: 10px; max-width: 320px; }
 .footer-contact { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
-.footer-contact a { opacity: 0.85; }
-.footer-contact a:hover { opacity: 1; }
-.footer-bot { border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; padding: 14px; font-size: 12px; opacity: 0.6; }
+.footer-contact address { font-style: normal; }
+.footer-contact a { color: var(--navy-hover); overflow-wrap: anywhere; }
+.footer-contact a:hover { color: var(--brand-pink); }
+.footer-bot { border-top: 1px solid var(--border); text-align: center; padding: 14px; font-size: 12px; color: var(--text-light); }
 
 /* ---- WhatsApp floating button ---- */
 .wa-btn {

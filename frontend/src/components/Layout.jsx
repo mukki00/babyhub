@@ -16,8 +16,8 @@ export default function Layout() {
       <header className="site-header">
         <div className="header-inner">
           <Link to="/" className="logo-link">
-            <span className="logo-script">babyhub</span>
-            <span className="logo-sub">Made for Baby &amp; You</span>
+            <span className="logo-script"><span className="logo-baby">baby</span><span className="logo-hub">hub</span></span>
+            <span className="logo-sub">Care &amp; Comfort</span>
           </Link>
           <Link to="/cart" className="icon-btn" aria-label="Cart">
             <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -33,12 +33,14 @@ export default function Layout() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div>
-            <span className="logo-script">babyhub</span>
+            <span className="logo-script"><span className="logo-baby">baby</span><span className="logo-hub">hub</span></span>
+            <span className="logo-sub">Care &amp; Comfort</span>
             <p>Premium baby &amp; kids essentials — order online, we confirm your order over WhatsApp.</p>
           </div>
           <div className="footer-contact">
-            <a href="https://wa.me/+94789299383" target="_blank" rel="noopener noreferrer">💬 WhatsApp Us</a>
-            <a href="mailto:online@shopbabyhub.lk">online@shopbabyhub.lk</a>
+            <address>No: 22/2, Main Street, Madawakkulama, Andigama</address>
+            <a href="mailto:care.babyhub@gmail.com">care.babyhub@gmail.com</a>
+            <a href="tel:+94764265061">+94 76 426 5061</a>
             {isAdminLoggedIn() ? <Link to="/admin">Admin Dashboard</Link> : <Link to="/admin/login">Admin Login</Link>}
           </div>
         </div>
