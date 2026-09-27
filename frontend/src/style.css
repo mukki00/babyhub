@@ -59,13 +59,20 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
   width: 18px; height: 18px; border-radius: 50%; font-size: 11px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
 }
-.cart-active { animation: cart-alert-blink 1s steps(2, start) infinite; }
-@keyframes cart-alert-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0.35; }
+.cart-active svg {
+  transform-origin: 50% 15%;
+  animation: cart-ring 1.1s ease-in-out infinite;
+}
+@keyframes cart-ring {
+  0%, 60%, 100% { transform: rotate(0) scale(1); }
+  10% { transform: rotate(-12deg) scale(1.1); }
+  20% { transform: rotate(10deg) scale(1.1); }
+  30% { transform: rotate(-8deg) scale(1.08); }
+  40% { transform: rotate(6deg) scale(1.04); }
+  50% { transform: rotate(-3deg) scale(1.02); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cart-active { animation: none; }
+  .cart-active svg { animation: none; }
 }
 
 /* ---- Hero ---- */
@@ -183,6 +190,14 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .admin-form-actions { display: flex; gap: 10px; margin-top: 8px; }
 .admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius); overflow: hidden; }
 .admin-table th, .admin-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.admin-table th:first-child, .admin-table td:first-child { width: 52px; padding-right: 4px; }
+.order-expand-btn {
+  display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center;
+  border: 1px solid var(--navy); border-radius: 50%; background: white; color: var(--navy);
+  font-size: 20px; line-height: 1;
+}
+.order-expand-btn:hover { background: var(--navy); color: white; }
+.order-expand-btn:focus-visible { outline: 2px solid var(--brand-pink); outline-offset: 2px; }
 .admin-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 4px; }
 .btn-link { color: var(--navy); font-weight: 600; font-size: 13px; margin-right: 14px; background: none; }
 .btn-link.danger { color: var(--red); }

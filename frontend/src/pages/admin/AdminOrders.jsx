@@ -33,21 +33,27 @@ export default function AdminOrders() {
 
       {status === 'ready' && orders.length > 0 && (
         <table className="admin-table">
-          <thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <thead><tr><th aria-label="Order items"></th><th>Date</th><th>Customer</th><th>Phone</th><th>Total</th><th>Status</th></tr></thead>
           <tbody>
             {orders.map((order) => (
               <Fragment key={order.id}>
                 <tr>
+                  <td>
+                    <button
+                      className="order-expand-btn"
+                      type="button"
+                      aria-label={`${expandedId === order.id ? 'Hide' : 'View'} items for ${order.customer_name}`}
+                      aria-expanded={expandedId === order.id}
+                      onClick={() => setExpandedId(expandedId === order.id ? null : order.id)}
+                    >
+                      <span aria-hidden="true">{expandedId === order.id ? '−' : '+'}</span>
+                    </button>
+                  </td>
                   <td>{formatDate(order.created_at)}</td>
                   <td>{order.customer_name}</td>
                   <td>{order.customer_phone}</td>
                   <td>Rs. {Number(order.total).toLocaleString()}.00</td>
                   <td><span className={`status-pill status-${order.status?.toLowerCase()}`}>{order.status}</span></td>
-                  <td>
-                    <button className="btn-link" onClick={() => setExpandedId(expandedId === order.id ? null : order.id)}>
-                      {expandedId === order.id ? 'Hide' : 'View'} Items
-                    </button>
-                  </td>
                 </tr>
                 {expandedId === order.id && (
                   <tr>
