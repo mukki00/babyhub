@@ -19,6 +19,8 @@ router.delete('/products/:id', productController.remove);
 
 router.get('/orders', orderController.list);
 router.get('/orders/:id', orderController.getById);
+router.put('/orders/:id', orderController.update);
+router.delete('/orders/:id', orderController.remove);
 router.patch('/orders/:id/shipped', orderController.markShipped);
 router.patch('/orders/:id/delivered', orderController.setDelivered);
 router.patch('/orders/:id/paid', orderController.setPaid);

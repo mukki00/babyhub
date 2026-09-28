@@ -56,6 +56,27 @@ const orderRepository = {
     });
   },
 
+  async updateDetails(id, { customerName, customerPhone, items, total }) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE orders SET customer_name = :customerName, customer_phone = :customerPhone, items = :items, total = :total
+         WHERE id = :id AND status = 'PENDING'`,
+        { id, customerName, customerPhone, items: JSON.stringify(items), total }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async remove(id) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `DELETE FROM orders WHERE id = :id AND status = 'PENDING'`,
+        { id }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
   async setDelivered(id, delivered) {
     return withConnection(async (conn) => {
       const result = await conn.execute(

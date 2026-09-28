@@ -21,6 +21,30 @@ const orderService = {
     return order;
   },
 
+  async updateOrderDetails(id, { customerName, customerPhone, items, total }) {
+    if (!customerName || !customerPhone || !Array.isArray(items) || items.length === 0) {
+      throw new ApiError(400, 'customerName, customerPhone and items are required');
+    }
+    const order = await orderRepository.findById(id);
+    if (!order) throw new ApiError(404, 'Order not found');
+    if (order.status?.toUpperCase() !== 'PENDING') {
+      throw new ApiError(409, 'Only pending orders can be edited');
+    }
+    const updated = await orderRepository.updateDetails(id, { customerName, customerPhone, items, total });
+    if (!updated) throw new ApiError(409, 'Order can no longer be edited');
+    return orderRepository.findById(id);
+  },
+
+  async deleteOrder(id) {
+    const order = await orderRepository.findById(id);
+    if (!order) throw new ApiError(404, 'Order not found');
+    if (order.status?.toUpperCase() !== 'PENDING') {
+      throw new ApiError(409, 'Only pending orders can be deleted');
+    }
+    const deleted = await orderRepository.remove(id);
+    if (!deleted) throw new ApiError(409, 'Order can no longer be deleted');
+  },
+
   async markOrderShipped(id) {
     const updated = await orderRepository.markShipped(id);
     if (!updated) throw new ApiError(404, 'Order not found');

@@ -17,6 +17,16 @@ const orderController = {
     res.json(order);
   }),
 
+  update: asyncHandler(async (req, res) => {
+    const order = await orderService.updateOrderDetails(req.params.id, req.body);
+    res.json(order);
+  }),
+
+  remove: asyncHandler(async (req, res) => {
+    await orderService.deleteOrder(req.params.id);
+    res.status(204).send();
+  }),
+
   markShipped: asyncHandler(async (req, res) => {
     const order = await orderService.markOrderShipped(req.params.id);
     res.json(order);

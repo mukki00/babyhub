@@ -8,6 +8,8 @@ import {
   adminRefundReturnedOrder,
   adminSetOrderDelivered,
   adminSetOrderPaid,
+  adminUpdateOrder,
+  adminDeleteOrder,
 } from '../../api.js';
 import AdminNav from '../../components/AdminNav.jsx';
 
@@ -25,6 +27,9 @@ export default function AdminOrders() {
   const [actionError, setActionError] = useState('');
   const [confirmation, setConfirmation] = useState(null);
   const [secondsRemaining, setSecondsRemaining] = useState(10);
+  const [editingOrder, setEditingOrder] = useState(null);
+  const [editSaving, setEditSaving] = useState(false);
+  const [editError, setEditError] = useState('');
 
   useEffect(() => {
     adminListOrders()
@@ -68,9 +73,13 @@ export default function AdminOrders() {
     setActionError('');
     try {
       const updatedOrder = await request();
-      setOrders((current) => current.map((order) => (
-        String(order.id) === String(updatedOrder.id) ? updatedOrder : order
-      )));
+      if (updatedOrder) {
+        setOrders((current) => current.map((order) => (
+          String(order.id) === String(updatedOrder.id) ? updatedOrder : order
+        )));
+      } else {
+        setOrders((current) => current.filter((order) => String(order.id) !== String(orderId)));
+      }
       setActionMessage(message);
     } catch {
       setActionError('Could not update the order. Please try again.');
@@ -87,6 +96,71 @@ export default function AdminOrders() {
   function beginCountdown() {
     setSecondsRemaining(10);
     setConfirmation((current) => current ? { ...current, phase: 'countdown' } : current);
+  }
+
+  function openEditOrder(order) {
+    setEditError('');
+    setEditingOrder({
+      id: order.id,
+      orderNumber: order.order_id,
+      customerName: order.customer_name,
+      customerPhone: order.customer_phone,
+      items: (Array.isArray(order.items) ? order.items : []).map((item) => ({ ...item })),
+    });
+  }
+
+  function closeEditOrder() {
+    setEditingOrder(null);
+    setEditError('');
+  }
+
+  function updateEditItem(index, field, value) {
+    setEditingOrder((current) => ({
+      ...current,
+      items: current.items.map((item, idx) => (idx === index ? { ...item, [field]: value } : item)),
+    }));
+  }
+
+  function removeEditItem(index) {
+    setEditingOrder((current) => ({
+      ...current,
+      items: current.items.filter((_, idx) => idx !== index),
+    }));
+  }
+
+  function editTotal(order) {
+    return order.items.reduce((sum, item) => sum + Number(item.qty || 0) * Number(item.price || 0), 0);
+  }
+
+  async function saveEditOrder() {
+    const { id, customerName, customerPhone, items } = editingOrder;
+    if (!customerName.trim() || !customerPhone.trim()) {
+      setEditError('Customer name and phone are required.');
+      return;
+    }
+    if (items.length === 0 || items.some((item) => Number(item.qty) <= 0 || Number(item.price) < 0)) {
+      setEditError('Each item needs a quantity above 0 and a valid price.');
+      return;
+    }
+    setEditSaving(true);
+    setEditError('');
+    try {
+      const updatedOrder = await adminUpdateOrder(id, {
+        customerName,
+        customerPhone,
+        items,
+        total: editTotal(editingOrder),
+      });
+      setOrders((current) => current.map((order) => (
+        String(order.id) === String(updatedOrder.id) ? updatedOrder : order
+      )));
+      setActionMessage('Order details updated.');
+      setEditingOrder(null);
+    } catch {
+      setEditError('Could not save changes. Please try again.');
+    } finally {
+      setEditSaving(false);
+    }
   }
 
   function isDelivered(order) {
@@ -257,21 +331,50 @@ export default function AdminOrders() {
                         )}
                         {activeTab !== 'refund' && <td>
                           {activeTab === 'orders' && !shipped && (
-                            <button
-                              className="btn-secondary ship-order-btn"
-                              type="button"
-                              disabled={updating}
-                              onClick={() => askForConfirmation(
-                                order.id,
-                                order.order_id,
-                                'Mark this order shipped?',
-                                'Please make sure payment is completed. Once shipped, we cannot undo the action.',
-                                () => adminMarkOrderShipped(order.id),
-                                'Order marked shipped and moved to the Shipped tab.'
-                              )}
-                            >
-                              {updating ? 'Updating…' : 'Mark Shipped'}
-                            </button>
+                            <>
+                              <button
+                                className="icon-action-btn edit-icon-btn"
+                                type="button"
+                                disabled={updating}
+                                aria-label={`Edit ${order.customer_name}'s order`}
+                                title="Edit order"
+                                onClick={() => openEditOrder(order)}
+                              >
+                                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4z"/></svg>
+                              </button>
+                              <button
+                                className="icon-action-btn delete-icon-btn"
+                                type="button"
+                                disabled={updating}
+                                aria-label={`Delete ${order.customer_name}'s order`}
+                                title="Delete order"
+                                onClick={() => askForConfirmation(
+                                  order.id,
+                                  order.order_id,
+                                  'Delete this order?',
+                                  'This will permanently remove the order. This action cannot be undone.',
+                                  () => adminDeleteOrder(order.id),
+                                  'Order deleted.'
+                                )}
+                              >
+                                <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                              </button>
+                              <button
+                                className="btn-secondary ship-order-btn"
+                                type="button"
+                                disabled={updating}
+                                onClick={() => askForConfirmation(
+                                  order.id,
+                                  order.order_id,
+                                  'Mark this order shipped?',
+                                  'Please make sure payment is completed. Once shipped, we cannot undo the action.',
+                                  () => adminMarkOrderShipped(order.id),
+                                  'Order marked shipped and moved to the Shipped tab.'
+                                )}
+                              >
+                                {updating ? 'Updating…' : 'Mark Shipped'}
+                              </button>
+                            </>
                           )}
                           {activeTab === 'shipped' && delivered && (
                             <button
@@ -344,6 +447,82 @@ export default function AdminOrders() {
             </table>
           )}
         </>
+      )}
+
+      {editingOrder && (
+        <div className="confirm-overlay">
+          <section
+            className="confirm-dialog edit-order-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="edit-order-title"
+          >
+            <h2 id="edit-order-title">Edit Order</h2>
+            <p className="confirm-order-number">Order ID: <strong>{editingOrder.orderNumber}</strong></p>
+
+            <div className="form-grp">
+              <label>Customer Name</label>
+              <input
+                type="text"
+                value={editingOrder.customerName}
+                onChange={(e) => setEditingOrder((current) => ({ ...current, customerName: e.target.value }))}
+              />
+            </div>
+            <div className="form-grp">
+              <label>Phone Number</label>
+              <input
+                type="tel"
+                value={editingOrder.customerPhone}
+                onChange={(e) => setEditingOrder((current) => ({ ...current, customerPhone: e.target.value }))}
+              />
+            </div>
+
+            <label>Items</label>
+            <div className="edit-items-list">
+              {editingOrder.items.map((item, idx) => (
+                <div className="edit-item-row" key={idx}>
+                  <span className="edit-item-name">{item.name}</span>
+                  <input
+                    type="number"
+                    min="1"
+                    className="edit-item-qty"
+                    value={item.qty}
+                    onChange={(e) => updateEditItem(idx, 'qty', e.target.value)}
+                  />
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    className="edit-item-price"
+                    value={item.price}
+                    onChange={(e) => updateEditItem(idx, 'price', e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="edit-item-remove"
+                    aria-label={`Remove ${item.name || 'item'}`}
+                    onClick={() => removeEditItem(idx)}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <p className="edit-order-total">Total: Rs. {editTotal(editingOrder).toLocaleString()}.00</p>
+
+            {editError && <p className="form-error" role="alert">{editError}</p>}
+
+            <div className="confirm-actions">
+              <button className="btn-secondary" type="button" onClick={closeEditOrder} disabled={editSaving}>
+                Cancel
+              </button>
+              <button className="btn-primary confirm-yes" type="button" onClick={saveEditOrder} disabled={editSaving}>
+                {editSaving ? 'Saving…' : 'Save Changes'}
+              </button>
+            </div>
+          </section>
+        </div>
       )}
 
       {confirmation && (

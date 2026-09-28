@@ -236,6 +236,30 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .confirm-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
 .confirm-actions .btn-secondary { margin-left: 0; }
 .confirm-yes { width: auto; padding: 9px 20px; }
+.edit-order-dialog { width: min(100%, 560px); }
+.edit-order-dialog > label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; color: var(--text-mid); }
+.edit-items-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.edit-item-row { display: grid; grid-template-columns: 1fr 64px 90px 28px; gap: 8px; align-items: center; }
+.edit-item-name { font-size: 13.5px; color: var(--text-dark); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.edit-item-row input {
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13.5px;
+}
+.edit-item-remove {
+  width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 6px; background: white;
+  color: var(--red); font-size: 16px; line-height: 1;
+}
+.edit-item-remove:hover { background: #fce8e8; border-color: var(--red); }
+.edit-order-total { margin: 14px 0 4px; font-weight: 700; color: var(--text-dark); }
+.icon-action-btn {
+  display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center;
+  border: 1px solid var(--border); border-radius: 6px; background: white; margin-right: 8px;
+}
+.icon-action-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+.icon-action-btn:disabled { opacity: 0.5; }
+.edit-icon-btn { color: var(--navy); }
+.edit-icon-btn:hover { background: #eaf1fb; border-color: var(--navy); }
+.delete-icon-btn { color: var(--red); }
+.delete-icon-btn:hover { background: #fce8e8; border-color: var(--red); }
 .confirm-cancel { border-color: var(--brand-pink); color: var(--brand-pink); }
 
 /* ---- Footer ---- */
