@@ -4,6 +4,8 @@ import { useCart } from '../context/CartContext.jsx';
 import { createOrder } from '../api.js';
 
 const WHATSAPP_NUMBER = '+94789299383';
+const NAME_PATTERN = /^[A-Za-z\s]*$/;
+const PHONE_PATTERN = /^(\+94\d{9}|0\d{9})$/;
 
 export default function Cart() {
   const { items, total, changeQty, removeItem, clear } = useCart();
@@ -11,6 +13,16 @@ export default function Cart() {
   const [phone, setPhone] = useState('');
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState('');
+
+  function handleNameChange(e) {
+    const value = e.target.value;
+    if (NAME_PATTERN.test(value)) setName(value);
+  }
+
+  function handlePhoneChange(e) {
+    const value = e.target.value;
+    if (/^[\d+]*$/.test(value)) setPhone(value);
+  }
 
   function buildWhatsAppMessage(orderNumber) {
     const lines = items.map((i) => `${i.qty} × ${i.name} — Rs. ${(i.price * i.qty).toLocaleString()}.00`);
@@ -21,6 +33,14 @@ export default function Cart() {
   async function handleCheckout() {
     if (!name.trim() || !phone.trim()) {
       setError('Please enter your name and phone number.');
+      return;
+    }
+    if (!NAME_PATTERN.test(name.trim()) || !/[A-Za-z]/.test(name)) {
+      setError('Name should only contain letters.');
+      return;
+    }
+    if (!PHONE_PATTERN.test(phone.trim())) {
+      setError('Phone number must be in the format +947xxxxxxxx or 07xxxxxxxx.');
       return;
     }
     setError('');
@@ -94,11 +114,11 @@ export default function Cart() {
 
           <div className="form-grp">
             <label>Your Name</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name"/>
+            <input type="text" value={name} onChange={handleNameChange} placeholder="Full name"/>
           </div>
           <div className="form-grp">
             <label>Phone Number</label>
-            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+94 7X XXX XXXX"/>
+            <input type="tel" value={phone} onChange={handlePhoneChange} placeholder="+947xxxxxxxx or 07xxxxxxxx"/>
           </div>
           {error && <p className="form-error">{error}</p>}
 
