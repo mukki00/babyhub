@@ -19,6 +19,9 @@ CREATE TABLE products (
 
 CREATE TABLE orders (
   id             NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  order_id       VARCHAR2(32) GENERATED ALWAYS AS (
+                   'BH-' || TO_CHAR(created_at, 'YYYYMMDD') || '-' || TO_CHAR(id, 'FM99999999')
+                 ) VIRTUAL,
   customer_name  VARCHAR2(255) NOT NULL,
   customer_phone VARCHAR2(50) NOT NULL,
   items          CLOB NOT NULL,       -- JSON array of { productId, name, qty, price }

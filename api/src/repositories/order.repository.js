@@ -25,7 +25,7 @@ const orderRepository = {
   async findAll() {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, customer_name, customer_phone, items, total, status, paid, delivered, received, created_at
+        `SELECT id, order_id, customer_name, customer_phone, items, total, status, paid, delivered, received, created_at
          FROM orders
          ORDER BY created_at DESC`
       );
@@ -36,7 +36,7 @@ const orderRepository = {
   async findById(id) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, customer_name, customer_phone, items, total, status, paid, delivered, received, created_at
+        `SELECT id, order_id, customer_name, customer_phone, items, total, status, paid, delivered, received, created_at
          FROM orders
          WHERE id = :id`,
         { id }
