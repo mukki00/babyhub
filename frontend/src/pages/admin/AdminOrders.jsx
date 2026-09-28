@@ -351,6 +351,7 @@ export default function AdminOrders() {
             aria-describedby="order-confirm-message"
           >
             <h2 id="order-confirm-title">{confirmation.title}</h2>
+            <p className="confirm-order-number">Order ID: <strong>{confirmation.orderId}</strong></p>
             <p id="order-confirm-message">{confirmation.message}</p>
             {confirmation.phase === 'countdown' ? (
               <>

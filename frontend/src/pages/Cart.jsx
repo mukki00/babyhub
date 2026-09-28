@@ -12,9 +12,10 @@ export default function Cart() {
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState('');
 
-  function buildWhatsAppMessage() {
+  function buildWhatsAppMessage(orderNumber) {
     const lines = items.map((i) => `${i.qty} × ${i.name} — Rs. ${(i.price * i.qty).toLocaleString()}.00`);
-    return `Hello Baby Hub! I'd like to place an order:\n\n${lines.join('\n')}\n\nTotal: Rs. ${total.toLocaleString()}.00\n\nName: ${name}\nPhone: ${phone}`;
+    const reference = orderNumber ? `Order ID: ${orderNumber}\n\n` : '';
+    return `Hello Baby Hub! I'd like to place an order:\n\n${reference}${lines.join('\n')}\n\nTotal: Rs. ${total.toLocaleString()}.00\n\nName: ${name}\nPhone: ${phone}`;
   }
 
   async function handleCheckout() {
@@ -24,19 +25,34 @@ export default function Cart() {
     }
     setError('');
     setPlacing(true);
+    // Open the tab synchronously on the click so browsers don't treat it as a blocked popup.
+    // 'noopener' would make window.open return null, so we can't use it here — we navigate
+    // this same trusted tab to the WhatsApp link ourselves once the order is created.
+    const waTab = window.open('', '_blank');
+    if (waTab) {
+      // Some browsers block a delayed navigation of a still-blank tab as a popup workaround;
+      // writing real content immediately avoids that and gives the user feedback meanwhile.
+      waTab.document.write('<title>Redirecting…</title><body style="font-family:sans-serif;text-align:center;padding-top:3rem">Preparing your WhatsApp message…</body>');
+    }
+    let orderNumber;
     try {
-      await createOrder({
+      const order = await createOrder({
         customerName: name,
         customerPhone: phone,
         items: items.map((i) => ({ productId: i.id, name: i.name, qty: i.qty, price: i.price })),
         total,
       });
+      orderNumber = order.id;
     } catch (err) {
       console.error('Failed to persist order:', err);
-      // Persisting the order is optional — still proceed to WhatsApp checkout.
+      setError('Could not save your order. Please try again.');
+      if (waTab) waTab.close();
+      setPlacing(false);
+      return;
     }
-    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
-    window.open(waLink, '_blank', 'noopener,noreferrer');
+    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage(orderNumber))}`;
+    if (waTab) waTab.location.href = waLink;
+    else window.open(waLink, '_blank', 'noopener,noreferrer');
     clear();
     setPlacing(false);
   }
