@@ -17,6 +17,9 @@ function formatDate(value) {
   return new Date(value).toLocaleString('en-LK', { dateStyle: 'medium', timeStyle: 'short' });
 }
 
+const NAME_PATTERN = /^[A-Za-z\s]*$/;
+const PHONE_PATTERN = /^(\+94\d{9}|0\d{9})$/;
+
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState('loading');
@@ -136,6 +139,14 @@ export default function AdminOrders() {
     const { id, customerName, customerPhone, items } = editingOrder;
     if (!customerName.trim() || !customerPhone.trim()) {
       setEditError('Customer name and phone are required.');
+      return;
+    }
+    if (!NAME_PATTERN.test(customerName.trim()) || !/[A-Za-z]/.test(customerName)) {
+      setEditError('Customer name should only contain letters.');
+      return;
+    }
+    if (!PHONE_PATTERN.test(customerPhone.trim())) {
+      setEditError('Phone number must be in the format +947xxxxxxxx or 07xxxxxxxx.');
       return;
     }
     if (items.length === 0 || items.some((item) => Number(item.qty) <= 0 || Number(item.price) < 0)) {
@@ -465,7 +476,11 @@ export default function AdminOrders() {
               <input
                 type="text"
                 value={editingOrder.customerName}
-                onChange={(e) => setEditingOrder((current) => ({ ...current, customerName: e.target.value }))}
+                onChange={(e) => {
+                  if (NAME_PATTERN.test(e.target.value)) {
+                    setEditingOrder((current) => ({ ...current, customerName: e.target.value }));
+                  }
+                }}
               />
             </div>
             <div className="form-grp">
@@ -473,8 +488,13 @@ export default function AdminOrders() {
               <input
                 type="tel"
                 value={editingOrder.customerPhone}
-                onChange={(e) => setEditingOrder((current) => ({ ...current, customerPhone: e.target.value }))}
+                onChange={(e) => {
+                  if (/^[\d+]*$/.test(e.target.value)) {
+                    setEditingOrder((current) => ({ ...current, customerPhone: e.target.value }));
+                  }
+                }}
               />
+              <p className="phone-hint">Accepted formats: <code>+947xxxxxxxx</code> or <code>07xxxxxxxx</code></p>
             </div>
 
             <label>Items</label>

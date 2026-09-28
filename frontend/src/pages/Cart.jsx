@@ -119,6 +119,7 @@ export default function Cart() {
           <div className="form-grp">
             <label>Phone Number</label>
             <input type="tel" value={phone} onChange={handlePhoneChange} placeholder="+947xxxxxxxx or 07xxxxxxxx"/>
+            <p className="phone-hint">Accepted formats: <code>+947xxxxxxxx</code> or <code>07xxxxxxxx</code></p>
           </div>
           {error && <p className="form-error">{error}</p>}
 
