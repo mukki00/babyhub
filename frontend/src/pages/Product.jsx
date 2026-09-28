@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getProduct } from '../api.js';
 import { useCart } from '../context/CartContext.jsx';
-
-const WHATSAPP_NUMBER = '94XXXXXXXXXX';
 
 export default function Product() {
   const { id } = useParams();
@@ -11,6 +9,7 @@ export default function Product() {
   const [status, setStatus] = useState('loading');
   const [qty, setQty] = useState(1);
   const { addItem } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setStatus('loading');
@@ -25,8 +24,11 @@ export default function Product() {
   if (status === 'loading') return <p className="status-msg">Loading product…</p>;
   if (status === 'error' || !product) return <p className="status-msg">Product not found.</p>;
 
-  const message = `Hello Baby Hub! I'd like to order:\n${qty} × ${product.name} (Rs. ${Number(product.price).toLocaleString()}.00)`;
-  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  // Order via WhatsApp must go through the cart checkout so the order is persisted to the DB.
+  function handleOrderViaWhatsApp() {
+    addItem(product, qty);
+    navigate('/cart');
+  }
 
   return (
     <div className="prod-detail">
@@ -50,7 +52,7 @@ export default function Product() {
 
         <div className="prod-cta">
           <button className="btn-atc" onClick={() => addItem(product, qty)}>Add to Cart</button>
-          <a className="btn-wa-order" href={waLink} target="_blank" rel="noopener noreferrer">Order via WhatsApp</a>
+          <button className="btn-wa-order" onClick={handleOrderViaWhatsApp}>Order via WhatsApp</button>
         </div>
       </div>
     </div>
