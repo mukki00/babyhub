@@ -37,7 +37,7 @@ export default function Cart() {
         items: items.map((i) => ({ productId: i.id, name: i.name, qty: i.qty, price: i.price })),
         total,
       });
-      orderNumber = order.id;
+      orderNumber = order.order_id;
     } catch (err) {
       console.error('Failed to persist order:', err);
       setError('Could not save your order. Please try again.');

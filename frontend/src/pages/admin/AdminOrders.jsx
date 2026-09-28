@@ -79,8 +79,8 @@ export default function AdminOrders() {
     }
   }
 
-  function askForConfirmation(orderId, title, message, request, successMessage) {
-    setConfirmation({ orderId, title, message, request, successMessage, phase: 'confirm' });
+  function askForConfirmation(orderId, orderNumber, title, message, request, successMessage) {
+    setConfirmation({ orderId, orderNumber, title, message, request, successMessage, phase: 'confirm' });
     setSecondsRemaining(10);
   }
 
@@ -166,7 +166,7 @@ export default function AdminOrders() {
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th aria-label="Order items"></th><th>Date</th><th>Customer</th><th>Phone</th>
+                  <th aria-label="Order items"></th><th>Order ID</th><th>Date</th><th>Customer</th><th>Phone</th>
                   <th>Total</th><th>Status</th>
                   {activeTab === 'refund' && <th>Paid</th>}
                   {activeTab === 'shipped' && <th>Delivered</th>}
@@ -195,6 +195,7 @@ export default function AdminOrders() {
                             <span aria-hidden="true">{expandedId === order.id ? '−' : '+'}</span>
                           </button>
                         </td>
+                        <td><span className="order-reference">{order.order_id}</span></td>
                         <td>{formatDate(order.created_at)}</td>
                         <td>{order.customer_name}</td>
                         <td>{order.customer_phone}</td>
@@ -262,6 +263,7 @@ export default function AdminOrders() {
                               disabled={updating}
                               onClick={() => askForConfirmation(
                                 order.id,
+                                order.order_id,
                                 'Mark this order shipped?',
                                 'Please make sure payment is completed. Once shipped, we cannot undo the action.',
                                 () => adminMarkOrderShipped(order.id),
@@ -278,6 +280,7 @@ export default function AdminOrders() {
                               disabled={updating}
                               onClick={() => askForConfirmation(
                                 order.id,
+                                order.order_id,
                                 'Mark this order returned?',
                                 'Please make sure the item(s) have been returned. Once returned, we cannot undo the action.',
                                 () => adminMarkOrderReturned(order.id),
@@ -295,6 +298,7 @@ export default function AdminOrders() {
                                 disabled={updating}
                                 onClick={() => askForConfirmation(
                                   order.id,
+                                  order.order_id,
                                   'Ship this order again?',
                                   'Do you want to ship it again? Once shipped, we cannot undo the action.',
                                   () => adminReshipReturnedOrder(order.id),
@@ -309,6 +313,7 @@ export default function AdminOrders() {
                                 disabled={updating}
                                 onClick={() => askForConfirmation(
                                   order.id,
+                                  order.order_id,
                                   'Refund this payment?',
                                   'Do you want to refund the payment? Once it is refunded, we cannot undo the action.',
                                   () => adminRefundReturnedOrder(order.id),
@@ -323,7 +328,7 @@ export default function AdminOrders() {
                       </tr>
                       {expandedId === order.id && (
                         <tr>
-                          <td colSpan={activeTab === 'refund' ? 7 : 8}>
+                          <td colSpan={activeTab === 'refund' ? 8 : 9}>
                             <ul className="order-items-list">
                               {(Array.isArray(order.items) ? order.items : []).map((item, idx) => (
                                 <li key={idx}>{item.qty} × {item.name} — Rs. {Number(item.price * item.qty).toLocaleString()}.00</li>
@@ -351,7 +356,7 @@ export default function AdminOrders() {
             aria-describedby="order-confirm-message"
           >
             <h2 id="order-confirm-title">{confirmation.title}</h2>
-            <p className="confirm-order-number">Order ID: <strong>{confirmation.orderId}</strong></p>
+            <p className="confirm-order-number">Order ID: <strong>{confirmation.orderNumber}</strong></p>
             <p id="order-confirm-message">{confirmation.message}</p>
             {confirmation.phase === 'countdown' ? (
               <>

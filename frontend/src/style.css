@@ -221,10 +221,16 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .order-delivered input { accent-color: var(--navy); }
 .order-items-list { list-style: none; padding: 8px 0; font-size: 13px; color: var(--text-mid); }
 .order-items-list li { padding: 3px 0; }
+.order-reference { font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .confirm-overlay { position: fixed; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(22, 34, 48, 0.52); }
 .confirm-dialog { width: min(100%, 440px); padding: 26px; border: 1px solid var(--border); border-radius: 8px; background: white; box-shadow: 0 16px 48px rgba(20, 35, 50, 0.24); }
 .confirm-dialog h2 { margin-bottom: 10px; color: var(--text-dark); font-size: 20px; }
 .confirm-dialog > p { color: var(--text-mid); font-size: 14px; }
+.confirm-order-number {
+  display: inline-block; margin-bottom: 14px; padding: 4px 12px; border-radius: 20px;
+  background: #eaf1fb; color: var(--navy); font-size: 13px; font-variant-numeric: tabular-nums;
+}
+.confirm-order-number strong { font-weight: 700; }
 .confirm-dialog .confirm-countdown { margin-top: 18px; color: var(--navy-hover); font-size: 15px; }
 .confirm-countdown strong { color: var(--brand-pink); font-size: 20px; font-variant-numeric: tabular-nums; }
 .confirm-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
