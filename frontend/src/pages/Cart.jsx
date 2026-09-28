@@ -29,11 +29,6 @@ export default function Cart() {
     // 'noopener' would make window.open return null, so we can't use it here — we navigate
     // this same trusted tab to the WhatsApp link ourselves once the order is created.
     const waTab = window.open('', '_blank');
-    if (waTab) {
-      // Some browsers block a delayed navigation of a still-blank tab as a popup workaround;
-      // writing real content immediately avoids that and gives the user feedback meanwhile.
-      waTab.document.write('<title>Redirecting…</title><body style="font-family:sans-serif;text-align:center;padding-top:3rem">Preparing your WhatsApp message…</body>');
-    }
     let orderNumber;
     try {
       const order = await createOrder({
