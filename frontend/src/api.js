@@ -24,11 +24,20 @@ function adminHeaders() {
 /* ---- Public API ---- */
 export const getProducts = () => request('/products');
 export const getProduct = (id) => request(`/products/${id}`);
+export const getWhatsAppNumber = () => request('/whatsapp-number');
 export const createOrder = (order) => request('/orders', { method: 'POST', body: JSON.stringify(order) });
 
 /* ---- Admin API ---- */
 export const adminLogin = (username, password) =>
   request('/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) });
+
+export const adminGetPhoneNumber = () => request('/admin/settings/phone', { headers: adminHeaders() });
+export const adminUpdatePhoneNumber = (phoneNumber) =>
+  request('/admin/settings/phone', {
+    method: 'PUT',
+    body: JSON.stringify({ phoneNumber }),
+    headers: adminHeaders(),
+  });
 
 export const adminListProducts = () => request('/admin/products', { headers: adminHeaders() });
 

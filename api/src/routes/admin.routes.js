@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const authController = require('../controllers/auth.controller');
+const adminController = require('../controllers/admin.controller');
 const productController = require('../controllers/product.controller');
 const orderController = require('../controllers/order.controller');
 const requireAdminAuth = require('../middleware/auth.middleware');
@@ -11,6 +12,9 @@ const router = Router();
 router.post('/login', authController.login);
 
 router.use(requireAdminAuth);
+
+router.get('/settings/phone', adminController.getPhoneNumber);
+router.put('/settings/phone', adminController.updatePhoneNumber);
 
 router.get('/products', productController.list);
 router.post('/products', upload.single('image'), productController.create);

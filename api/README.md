@@ -21,7 +21,7 @@ sql/schema.sql              Oracle Autonomous DB table definitions
 1. `npm install`
 2. Copy `.env.example` to `.env` and fill in Oracle Autonomous DB + Cloudinary + JWT secrets.
 3. Place your Oracle Wallet files in `./wallet` (path set via `ORACLE_WALLET_LOCATION`).
-4. Run `sql/schema.sql` against your Autonomous Database to create tables.
+4. Run `sql/schema.sql` against your Autonomous Database to create tables. For an existing database, run `sql/add_admin_phone_number.sql` to add the admin phone column.
 5. Create an admin user (hash the password with bcrypt) and insert it into `admins`.
 
 ## Run locally
@@ -31,6 +31,6 @@ sql/schema.sql              Oracle Autonomous DB table definitions
 
 ## API
 
-Public: `GET /api/products`, `GET /api/products/:id`, `POST /api/orders`
+Public: `GET /api/products`, `GET /api/products/:id`, `GET /api/whatsapp-number`, `POST /api/orders`
 
-Admin (Bearer JWT required, except login): `POST /api/admin/login`, `GET/POST /api/admin/products`, `PUT/DELETE /api/admin/products/:id`, `GET /api/admin/orders`
+Admin (Bearer JWT required, except login): `POST /api/admin/login`, `GET/POST /api/admin/products`, `PUT/DELETE /api/admin/products/:id`, `GET /api/admin/orders`, `GET/PUT /api/admin/settings/phone`

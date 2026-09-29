@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react';
-import { adminListProducts, adminCreateProduct, adminUpdateProduct, adminDeleteProduct } from '../../api.js';
+import {
+  adminGetPhoneNumber,
+  adminUpdatePhoneNumber,
+  adminListProducts,
+  adminCreateProduct,
+  adminUpdateProduct,
+  adminDeleteProduct,
+} from '../../api.js';
 import AdminNav from '../../components/AdminNav.jsx';
 
 const EMPTY_FORM = { name: '', description: '', price: '', image: null };
+const PHONE_PATTERN = /^\+94\d{9}$/;
 
 export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
@@ -10,6 +18,10 @@ export default function AdminDashboard() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneStatus, setPhoneStatus] = useState('loading');
+  const [phoneError, setPhoneError] = useState('');
+  const [savingPhone, setSavingPhone] = useState(false);
 
   function load() {
     setStatus('loading');
@@ -22,6 +34,33 @@ export default function AdminDashboard() {
   }
 
   useEffect(load, []);
+
+  useEffect(() => {
+    adminGetPhoneNumber()
+      .then(({ phoneNumber: savedPhone }) => {
+        setPhoneNumber(savedPhone || '');
+        setPhoneStatus('ready');
+      })
+      .catch(() => setPhoneStatus('error'));
+  }, []);
+
+  async function handlePhoneSave(e) {
+    e.preventDefault();
+    if (!PHONE_PATTERN.test(phoneNumber.trim())) {
+      setPhoneError('Use +947xxxxxxxx.');
+      return;
+    }
+    setPhoneError('');
+    setSavingPhone(true);
+    try {
+      const saved = await adminUpdatePhoneNumber(phoneNumber.trim());
+      setPhoneNumber(saved.phoneNumber);
+    } catch {
+      setPhoneError('Could not save the phone number. Please try again.');
+    } finally {
+      setSavingPhone(false);
+    }
+  }
 
   function startEdit(product) {
     setEditingId(product.id);
@@ -71,6 +110,32 @@ export default function AdminDashboard() {
   return (
     <div className="admin-wrap">
       <AdminNav />
+      <form className="admin-form" onSubmit={handlePhoneSave}>
+        <h3>WhatsApp Contact Number</h3>
+        {phoneStatus === 'loading' && <p>Loading phone number…</p>}
+        {phoneStatus === 'error' && <p className="form-error">Could not load the phone number.</p>}
+        {phoneStatus === 'ready' && (
+          <>
+            <div className="form-grp">
+              <label htmlFor="admin-phone-number">Phone Number</label>
+              <input
+                id="admin-phone-number"
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="+947xxxxxxxx"
+                pattern="\+94[0-9]{9}"
+                maxLength={12}
+                required
+              />
+            </div>
+            {phoneError && <p className="form-error">{phoneError}</p>}
+            <button type="submit" className="btn-primary" disabled={savingPhone}>
+              {savingPhone ? 'Saving…' : 'Save Phone Number'}
+            </button>
+          </>
+        )}
+      </form>
       <div className="admin-head">
         <h1>Product Management</h1>
         <div>

@@ -4,6 +4,7 @@ CREATE TABLE admins (
   id            NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   username      VARCHAR2(100) UNIQUE NOT NULL,
   password_hash VARCHAR2(255) NOT NULL,
+  phone_number  VARCHAR2(20),
   created_at    TIMESTAMP DEFAULT SYSTIMESTAMP
 );
 

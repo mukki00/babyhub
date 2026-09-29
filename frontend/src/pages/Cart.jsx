@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
-import { createOrder } from '../api.js';
+import { createOrder, getWhatsAppNumber } from '../api.js';
 
-const WHATSAPP_NUMBER = '+94789299383';
 const NAME_PATTERN = /^[A-Za-z\s]*$/;
 const PHONE_PATTERN = /^(\+94\d{9}|0\d{9})$/;
 
@@ -50,6 +49,26 @@ export default function Cart() {
     // this same trusted tab to the WhatsApp link ourselves once the order is created.
     const waTab = window.open('', '_blank');
     let orderNumber;
+    let whatsappNumber;
+    try {
+      const contact = await getWhatsAppNumber();
+      if (!contact.phoneNumber) {
+        setError('The admin WhatsApp number has not been configured yet. Please try again later.');
+        if (waTab) waTab.close();
+        setPlacing(false);
+        return;
+      }
+      whatsappNumber = contact.phoneNumber.startsWith('+94')
+        ? contact.phoneNumber.slice(1)
+        : `94${contact.phoneNumber.slice(1)}`;
+    } catch (err) {
+      console.error('Failed to load the admin WhatsApp number:', err);
+      setError('Could not load the WhatsApp contact number. Please try again.');
+      if (waTab) waTab.close();
+      setPlacing(false);
+      return;
+    }
+
     try {
       const order = await createOrder({
         customerName: name,
@@ -65,7 +84,7 @@ export default function Cart() {
       setPlacing(false);
       return;
     }
-    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage(orderNumber))}`;
+    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(buildWhatsAppMessage(orderNumber))}`;
     if (waTab) waTab.location.href = waLink;
     else window.open(waLink, '_blank', 'noopener,noreferrer');
     clear();

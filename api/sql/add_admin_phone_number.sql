@@ -1,0 +1,1 @@
+ALTER TABLE admins ADD phone_number VARCHAR2(20);
