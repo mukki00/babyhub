@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {
   adminGetPhoneNumber,
   adminUpdatePhoneNumber,
@@ -23,6 +23,7 @@ const PHONE_PATTERN = /^\+94\d{9}$/;
 
 export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
   const [status, setStatus] = useState('loading');
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
@@ -167,6 +168,10 @@ export default function AdminDashboard() {
     load();
   }
 
+  function toggleDescription(id) {
+    setExpandedDescriptions((current) => ({ ...current, [id]: !current[id] }));
+  }
+
   return (
     <div className="admin-wrap">
       <AdminNav />
@@ -273,22 +278,65 @@ export default function AdminDashboard() {
       {status === 'error' && <p className="status-msg">Could not load products.</p>}
 
       {status === 'ready' && (
-        <table className="admin-table">
-          <thead><tr><th>Image</th><th>Name</th><th>Price</th><th></th></tr></thead>
-          <tbody>
-            {products.map((p) => (
-              <tr key={p.id}>
-                <td><img src={p.image_url || 'https://placehold.co/60x60?text=—'} alt={p.name} className="admin-thumb"/></td>
-                <td>{p.name}</td>
-                <td>Rs. {Number(p.price).toLocaleString()}.00</td>
-                <td>
-                  <button className="btn-link" onClick={() => startEdit(p)}>Edit</button>
-                  <button className="btn-link danger" onClick={() => handleDelete(p.id)}>Delete</button>
-                </td>
+        <div className="admin-table-wrap">
+          <table className="admin-table product-admin-table">
+            <thead>
+              <tr>
+                <th aria-label="Description controls"></th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Product Category</th>
+                <th>Product Sub Category</th>
+                <th>Price</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((p) => {
+                const isDescriptionExpanded = Boolean(expandedDescriptions[p.id]);
+                return (
+                  <Fragment key={p.id}>
+                    <tr>
+                      <td>
+                        {p.description ? (
+                          <button
+                            type="button"
+                            className="description-expand-btn"
+                            onClick={() => toggleDescription(p.id)}
+                            aria-label={`${isDescriptionExpanded ? 'Hide' : 'Show'} description for ${p.name}`}
+                            aria-expanded={isDescriptionExpanded}
+                            title={isDescriptionExpanded ? 'Hide description' : 'Show description'}
+                          >
+                            {isDescriptionExpanded ? '−' : '+'}
+                          </button>
+                        ) : '—'}
+                      </td>
+                      <td><img src={p.image_url || 'https://placehold.co/60x60?text=—'} alt={p.name} className="admin-thumb"/></td>
+                      <td>{p.name}</td>
+                      <td>{p.category_name || '—'}</td>
+                      <td>{p.sub_category_name || '—'}</td>
+                      <td>Rs. {Number(p.price).toLocaleString()}.00</td>
+                      <td>
+                        <button className="btn-link" onClick={() => startEdit(p)}>Edit</button>
+                        <button className="btn-link danger" onClick={() => handleDelete(p.id)}>Delete</button>
+                      </td>
+                    </tr>
+                    {isDescriptionExpanded && (
+                      <tr className="product-description-row">
+                        <td colSpan={7}>
+                          <div className="product-description-details">
+                            <strong>Description</strong>
+                            <p>{p.description}</p>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

@@ -6,9 +6,14 @@ const productRepository = {
   async findAll() {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, name, description, price, category_id, sub_category_id, image_url, image_public_id, created_at
-         FROM products
-         ORDER BY created_at DESC`
+        `SELECT p.id, p.name, p.description, p.price, p.category_id, p.sub_category_id,
+          pc.product_category AS category_name,
+          psc.sub_category AS sub_category_name,
+          p.image_url, p.image_public_id, p.created_at
+         FROM products p
+         LEFT JOIN product_categories pc ON pc.id = p.category_id
+         LEFT JOIN product_sub_categories psc ON psc.id = p.sub_category_id
+         ORDER BY p.created_at DESC`
       );
       return normalizeRows(result.rows);
     });
@@ -17,9 +22,14 @@ const productRepository = {
   async findById(id) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, name, description, price, category_id, sub_category_id, image_url, image_public_id, created_at
-         FROM products
-         WHERE id = :id`,
+        `SELECT p.id, p.name, p.description, p.price, p.category_id, p.sub_category_id,
+          pc.product_category AS category_name,
+          psc.sub_category AS sub_category_name,
+          p.image_url, p.image_public_id, p.created_at
+         FROM products p
+         LEFT JOIN product_categories pc ON pc.id = p.category_id
+         LEFT JOIN product_sub_categories psc ON psc.id = p.sub_category_id
+         WHERE p.id = :id`,
         { id }
       );
       return normalizeRow(result.rows[0]) || null;

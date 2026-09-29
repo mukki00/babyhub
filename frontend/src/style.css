@@ -199,9 +199,24 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .admin-form { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; max-width: 480px; }
 .admin-form h3 { margin-bottom: 16px; }
 .admin-form-actions { display: flex; gap: 10px; margin-top: 8px; }
+.admin-table-wrap { width: 100%; overflow-x: auto; }
 .admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius); overflow: hidden; }
+.admin-table-wrap .admin-table { min-width: 900px; }
 .admin-table th, .admin-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13.5px; }
 .admin-table th:first-child, .admin-table td:first-child { width: 52px; padding-right: 4px; }
+.product-admin-table th:first-child, .product-admin-table td:first-child { width: 42px; padding: 8px; text-align: center; }
+.product-admin-table th:nth-child(2), .product-admin-table td:nth-child(2) { width: 52px; padding-right: 4px; }
+.description-expand-btn {
+  display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center;
+  border: 1px solid var(--navy); border-radius: 50%; background: white; color: var(--navy);
+  font-size: 20px; line-height: 1;
+}
+.description-expand-btn:hover { background: var(--navy); color: white; }
+.description-expand-btn:focus-visible { outline: 2px solid var(--brand-pink); outline-offset: 2px; }
+.product-description-row td { background: #f8fafc; }
+.product-description-details { display: flex; align-items: flex-start; gap: 14px; white-space: normal; }
+.product-description-details strong { flex: 0 0 110px; color: var(--text-dark); }
+.product-description-details p { max-width: 720px; color: var(--text-mid); }
 .order-expand-btn {
   display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center;
   border: 1px solid var(--navy); border-radius: 50%; background: white; color: var(--navy);
