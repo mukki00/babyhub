@@ -33,6 +33,8 @@ export default function AdminDashboard() {
   const [subCategories, setSubCategories] = useState([]);
   const [subCategoriesStatus, setSubCategoriesStatus] = useState('ready');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [savedPhoneNumber, setSavedPhoneNumber] = useState('');
+  const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [phoneStatus, setPhoneStatus] = useState('loading');
   const [phoneError, setPhoneError] = useState('');
   const [savingPhone, setSavingPhone] = useState(false);
@@ -62,6 +64,7 @@ export default function AdminDashboard() {
     adminGetPhoneNumber()
       .then(({ phoneNumber: savedPhone }) => {
         setPhoneNumber(savedPhone || '');
+        setSavedPhoneNumber(savedPhone || '');
         setPhoneStatus('ready');
       })
       .catch(() => setPhoneStatus('error'));
@@ -78,11 +81,19 @@ export default function AdminDashboard() {
     try {
       const saved = await adminUpdatePhoneNumber(phoneNumber.trim());
       setPhoneNumber(saved.phoneNumber);
+      setSavedPhoneNumber(saved.phoneNumber);
+      setIsEditingPhone(false);
     } catch {
       setPhoneError('Could not save the phone number. Please try again.');
     } finally {
       setSavingPhone(false);
     }
+  }
+
+  function cancelPhoneEdit() {
+    setPhoneNumber(savedPhoneNumber);
+    setPhoneError('');
+    setIsEditingPhone(false);
   }
 
   async function loadSubCategories(categoryId, selectedSubCategoryId = '') {
@@ -181,23 +192,52 @@ export default function AdminDashboard() {
         {phoneStatus === 'error' && <p className="form-error">Could not load the phone number.</p>}
         {phoneStatus === 'ready' && (
           <>
-            <div className="form-grp">
-              <label htmlFor="admin-phone-number">Phone Number</label>
-              <input
-                id="admin-phone-number"
-                type="tel"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="+947xxxxxxxx"
-                pattern="\+94[0-9]{9}"
-                maxLength={12}
-                required
-              />
-            </div>
-            {phoneError && <p className="form-error">{phoneError}</p>}
-            <button type="submit" className="btn-primary" disabled={savingPhone}>
-              {savingPhone ? 'Saving…' : 'Save Phone Number'}
-            </button>
+            {isEditingPhone ? (
+              <>
+                <div className="form-grp">
+                  <label htmlFor="admin-phone-number">Phone Number</label>
+                  <input
+                    id="admin-phone-number"
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="+947xxxxxxxx"
+                    pattern="\\+94[0-9]{9}"
+                    maxLength={12}
+                    required
+                    autoFocus
+                  />
+                </div>
+                {phoneError && <p className="form-error">{phoneError}</p>}
+                <div className="admin-phone-actions">
+                  <button type="submit" className="btn-primary" disabled={savingPhone}>
+                    {savingPhone ? 'Saving…' : 'Save Phone Number'}
+                  </button>
+                  <button type="button" className="btn-secondary" onClick={cancelPhoneEdit} disabled={savingPhone}>
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="form-grp">
+                <label>Phone Number</label>
+                <div className="admin-phone-display">
+                  <span>{savedPhoneNumber || 'Not set'}</span>
+                  <button
+                    type="button"
+                    className="icon-action-btn edit-icon-btn"
+                    aria-label="Edit WhatsApp contact number"
+                    title="Edit phone number"
+                    onClick={() => {
+                      setPhoneError('');
+                      setIsEditingPhone(true);
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4z"/></svg>
+                  </button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </form>
