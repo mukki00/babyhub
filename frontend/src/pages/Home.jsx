@@ -81,6 +81,12 @@ export default function Home() {
   }
 
   const selectedCategory = categories.find((category) => String(category.id) === selectedCategoryId);
+  const selectedSubCategory = (subCategoriesByCategory[selectedCategoryId] || [])
+    .find((subCategory) => String(subCategory.id) === selectedSubCategoryId);
+  const selectedCategoryLabel = selectedCategory?.product_category.trim().toLowerCase() === 'sale'
+    ? 'Special Offers'
+    : selectedCategory?.product_category;
+  const productListTitle = selectedSubCategory?.sub_category || selectedCategoryLabel || 'Our Products';
   const orderedCategories = [...categories].sort((first, second) => {
     const firstIndex = CATEGORY_MENU_ORDER.indexOf(first.product_category.trim().toLowerCase());
     const secondIndex = CATEGORY_MENU_ORDER.indexOf(second.product_category.trim().toLowerCase());
@@ -175,12 +181,23 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="section-hd">
-          <h2 className="section-title">
-            {selectedCategory?.product_category.toLowerCase() === 'sale'
-              ? 'Special Offers'
-              : selectedCategory?.product_category || 'Our Products'}
-          </h2>
+        <div className="section-hd product-list-heading">
+          <nav className="product-breadcrumb" aria-label="Breadcrumb">
+            <span>Home</span>
+            {selectedCategoryLabel && (
+              <>
+                <span aria-hidden="true">›</span>
+                <span>{selectedCategoryLabel}</span>
+              </>
+            )}
+            {selectedSubCategory && (
+              <>
+                <span aria-hidden="true">›</span>
+                <span aria-current="page">{selectedSubCategory.sub_category}</span>
+              </>
+            )}
+          </nav>
+          <h2 className="section-title">{productListTitle}</h2>
         </div>
 
         {categoriesStatus === 'error' && <p className="status-msg">Could not load product categories.</p>}
