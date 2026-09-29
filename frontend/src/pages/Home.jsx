@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   getProductCategories,
@@ -31,7 +31,10 @@ export default function Home() {
   const [subCategoriesByCategory, setSubCategoriesByCategory] = useState({});
   const [subCategoryStatuses, setSubCategoryStatuses] = useState({});
   const [openCategoryId, setOpenCategoryId] = useState('');
+  const [dropdownLeft, setDropdownLeft] = useState(0);
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState('');
+  const [categoryScroll, setCategoryScroll] = useState({ canScrollLeft: false, canScrollRight: false });
+  const categoryMenuViewport = useRef(null);
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -42,6 +45,32 @@ export default function Home() {
       })
       .catch(() => setStatus('error'));
   }, []);
+
+  useEffect(() => {
+    const viewport = categoryMenuViewport.current;
+    if (!viewport) return undefined;
+
+    function updateScrollState() {
+      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+      setCategoryScroll({
+        canScrollLeft: viewport.scrollLeft > 1,
+        canScrollRight: maxScroll - viewport.scrollLeft > 1,
+      });
+    }
+
+    updateScrollState();
+    viewport.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('resize', updateScrollState);
+    const resizeObserver = new ResizeObserver(updateScrollState);
+    resizeObserver.observe(viewport);
+    if (viewport.firstElementChild) resizeObserver.observe(viewport.firstElementChild);
+
+    return () => {
+      viewport.removeEventListener('scroll', updateScrollState);
+      window.removeEventListener('resize', updateScrollState);
+      resizeObserver.disconnect();
+    };
+  }, [categories.length, categoriesStatus]);
 
   useEffect(() => {
     getProductCategories()
@@ -80,6 +109,25 @@ export default function Home() {
       .catch(() => setSubCategoryStatuses((current) => ({ ...current, [categoryId]: 'error' })));
   }
 
+  function openCategoryDropdown(categoryId, element) {
+    const menu = element.closest('.home-category-menu');
+    const group = element.closest('.home-category-menu-group');
+    if (menu && group) {
+      const menuBounds = menu.getBoundingClientRect();
+      const groupBounds = group.getBoundingClientRect();
+      const dropdownWidth = Math.min(240, menuBounds.width - 16);
+      setDropdownLeft(Math.max(8, Math.min(groupBounds.left - menuBounds.left, menuBounds.width - dropdownWidth - 8)));
+    }
+    setOpenCategoryId(categoryId);
+    loadSubCategories(categoryId);
+  }
+
+  function scrollCategoryMenu(direction) {
+    const viewport = categoryMenuViewport.current;
+    if (!viewport) return;
+    viewport.scrollBy({ left: viewport.clientWidth * 0.75 * direction, behavior: 'smooth' });
+  }
+
   const selectedCategory = categories.find((category) => String(category.id) === selectedCategoryId);
   const selectedSubCategory = (subCategoriesByCategory[selectedCategoryId] || [])
     .find((subCategory) => String(subCategory.id) === selectedSubCategoryId);
@@ -99,75 +147,95 @@ export default function Home() {
     <>
       {categoriesStatus === 'ready' && categories.length > 0 && (
         <>
-          <nav className="home-category-menu" aria-label="Product categories">
-            <div className="home-category-menu-inner">
-              {orderedCategories.map((category) => {
-                const categoryId = String(category.id);
-                const isOpen = openCategoryId === categoryId;
-                const subCategories = subCategoriesByCategory[categoryId] || [];
-                const subCategoryStatus = subCategoryStatuses[categoryId] || 'loading';
-                return (
-                  <div
-                    className={`home-category-menu-group${isOpen ? ' is-open' : ''}`}
-                    key={category.id}
-                    onMouseEnter={() => {
-                      setOpenCategoryId(categoryId);
-                      loadSubCategories(categoryId);
-                    }}
-                    onMouseLeave={() => setOpenCategoryId('')}
-                    onFocus={() => {
-                      setOpenCategoryId(categoryId);
-                      loadSubCategories(categoryId);
-                    }}
-                    onBlur={(event) => {
-                      if (!event.currentTarget.contains(event.relatedTarget)) setOpenCategoryId('');
-                    }}
-                  >
-                    <button
-                      type="button"
-                      className={`home-category-menu-link${selectedCategoryId === categoryId ? ' active' : ''}${category.product_category.trim().toLowerCase() === 'sale' ? ' special-offers-link' : ''}`}
-                      aria-pressed={selectedCategoryId === categoryId}
-                      aria-expanded={isOpen}
-                      aria-haspopup="true"
-                      onClick={() => {
-                        selectCategory(categoryId);
-                        setOpenCategoryId(categoryId);
-                        loadSubCategories(categoryId);
-                      }}
+          <nav
+            className="home-category-menu"
+            aria-label="Product categories"
+            onMouseLeave={() => setOpenCategoryId('')}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setOpenCategoryId('');
+            }}
+          >
+            <button
+              type="button"
+              className="category-carousel-arrow"
+              aria-label="Scroll categories left"
+              onClick={() => scrollCategoryMenu(-1)}
+              disabled={!categoryScroll.canScrollLeft}
+            >
+              ‹
+            </button>
+            <div className="home-category-menu-viewport" ref={categoryMenuViewport}>
+              <div className="home-category-menu-inner">
+                {orderedCategories.map((category) => {
+                  const categoryId = String(category.id);
+                  const isOpen = openCategoryId === categoryId;
+                  return (
+                    <div
+                      className="home-category-menu-group"
+                      key={category.id}
+                      onMouseEnter={(event) => openCategoryDropdown(categoryId, event.currentTarget)}
+                      onFocus={(event) => openCategoryDropdown(categoryId, event.currentTarget)}
                     >
-                      {category.product_category.trim().toLowerCase() === 'sale' ? 'Special Offers' : category.product_category}
-                    </button>
-                    <div className="home-category-dropdown">
-                      {subCategoryStatus === 'loading' && <span className="home-subcategory-message">Loading…</span>}
-                      {subCategoryStatus === 'error' && <span className="home-subcategory-message">Could not load subcategories.</span>}
-                      {subCategoryStatus === 'ready' && subCategories.length === 0 && (
-                        <span className="home-subcategory-message">No subcategories</span>
-                      )}
-                      {subCategoryStatus === 'ready' && subCategories.length > 0 && (
-                        <ul>
-                          {subCategories.map((subCategory) => (
-                            <li key={subCategory.id}>
-                              <button
-                                type="button"
-                                className={`home-subcategory-link${selectedSubCategoryId === String(subCategory.id) ? ' active' : ''}`}
-                                aria-pressed={selectedSubCategoryId === String(subCategory.id)}
-                                onClick={() => {
-                                  selectCategory(categoryId);
-                                  setSelectedSubCategoryId(String(subCategory.id));
-                                  setOpenCategoryId('');
-                                }}
-                              >
-                                {subCategory.sub_category}
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                      <button
+                        type="button"
+                        className={`home-category-menu-link${selectedCategoryId === categoryId ? ' active' : ''}${category.product_category.trim().toLowerCase() === 'sale' ? ' special-offers-link' : ''}`}
+                        aria-pressed={selectedCategoryId === categoryId}
+                        aria-expanded={isOpen}
+                        aria-haspopup="true"
+                        onClick={(event) => {
+                          selectCategory(categoryId);
+                          openCategoryDropdown(categoryId, event.currentTarget);
+                        }}
+                      >
+                        {category.product_category.trim().toLowerCase() === 'sale' ? 'Special Offers' : category.product_category}
+                      </button>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
+            <button
+              type="button"
+              className="category-carousel-arrow"
+              aria-label="Scroll categories right"
+              onClick={() => scrollCategoryMenu(1)}
+              disabled={!categoryScroll.canScrollRight}
+            >
+              ›
+            </button>
+            {openCategoryId && (() => {
+              const subCategories = subCategoriesByCategory[openCategoryId] || [];
+              const subCategoryStatus = subCategoryStatuses[openCategoryId] || 'loading';
+              return (
+                <div className="home-category-dropdown" style={{ left: `${dropdownLeft}px` }}>
+                  {subCategoryStatus === 'loading' && <span className="home-subcategory-message">Loading…</span>}
+                  {subCategoryStatus === 'error' && <span className="home-subcategory-message">Could not load subcategories.</span>}
+                  {subCategoryStatus === 'ready' && subCategories.length === 0 && (
+                    <span className="home-subcategory-message">No subcategories</span>
+                  )}
+                  {subCategoryStatus === 'ready' && subCategories.length > 0 && (
+                    <ul>
+                      {subCategories.map((subCategory) => (
+                        <li key={subCategory.id}>
+                          <button
+                            type="button"
+                            className={`home-subcategory-link${selectedSubCategoryId === String(subCategory.id) ? ' active' : ''}`}
+                            aria-pressed={selectedSubCategoryId === String(subCategory.id)}
+                            onClick={() => {
+                              selectCategory(openCategoryId);
+                              setSelectedSubCategoryId(String(subCategory.id));
+                              setOpenCategoryId('');
+                            }}
+                          >
+                            {subCategory.sub_category}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })()}
           </nav>
         </>
       )}
