@@ -87,6 +87,39 @@ input, textarea, select { font-family: var(--font-body); font-size: 14px; }
 .section-hd { text-align: center; margin-bottom: 32px; }
 .section-title { font-family: var(--font-serif); font-size: 28px; font-weight: 500; }
 .status-msg { text-align: center; color: var(--text-light); padding: 40px 0; }
+.home-category-menu { position: relative; z-index: 120; width: 100%; background: var(--text-dark); }
+.home-category-menu-inner {
+  display: flex; width: max-content; min-width: 100%; justify-content: center; align-items: stretch;
+  padding: 0 18px; margin: 0 auto;
+}
+.home-category-menu-group { position: relative; }
+.home-category-menu-link {
+  min-height: 42px; padding: 0 13px; border-bottom: 2px solid transparent; background: transparent;
+  color: var(--white); white-space: nowrap; font-size: 11px; font-weight: 600;
+}
+.home-category-menu-link:hover, .home-category-menu-link.active { border-bottom-color: var(--brand-pink); color: var(--white); }
+.home-category-menu-link.special-offers-link, .home-category-menu-link.special-offers-link.active { color: var(--brand-pink); }
+.home-category-dropdown {
+  display: none; position: absolute; top: 100%; left: 0; z-index: 130; min-width: 210px;
+  padding: 6px 0; border: 1px solid var(--border); border-top: 2px solid var(--brand-pink);
+  background: var(--white); box-shadow: var(--shadow);
+}
+.home-category-menu-group:hover .home-category-dropdown,
+.home-category-menu-group:focus-within .home-category-dropdown,
+.home-category-menu-group.is-open .home-category-dropdown { display: block; }
+.home-category-menu-group:hover { z-index: 140; }
+.home-subcategory-link {
+  display: block; width: 100%; padding: 8px 14px; background: transparent; color: var(--text-mid);
+  text-align: left; white-space: nowrap; font-size: 12px; font-weight: 500;
+}
+.home-subcategory-link:hover, .home-subcategory-link.active { background: var(--cream); color: var(--navy-hover); }
+.home-subcategory-message { display: block; padding: 8px 14px; color: var(--text-mid); font-size: 12px; white-space: nowrap; }
+@media (max-width: 900px) {
+  .home-category-menu-inner { width: 100%; min-width: 0; flex-wrap: wrap; justify-content: flex-start; padding: 0 10px; }
+  .home-category-menu-link { min-height: 38px; padding: 0 10px; font-size: 10px; }
+  .home-category-menu-group { position: static; }
+  .home-category-dropdown { left: 0; right: 0; top: 100%; width: 100%; min-width: 0; }
+}
 
 /* ---- Product Grid ---- */
 .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
