@@ -6,7 +6,7 @@ const productRepository = {
   async findAll() {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, name, description, price, image_url, image_public_id, created_at
+        `SELECT id, name, description, price, category_id, sub_category_id, image_url, image_public_id, created_at
          FROM products
          ORDER BY created_at DESC`
       );
@@ -17,7 +17,7 @@ const productRepository = {
   async findById(id) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `SELECT id, name, description, price, image_url, image_public_id, created_at
+        `SELECT id, name, description, price, category_id, sub_category_id, image_url, image_public_id, created_at
          FROM products
          WHERE id = :id`,
         { id }
@@ -26,16 +26,18 @@ const productRepository = {
     });
   },
 
-  async create({ name, description, price, imageUrl, imagePublicId }) {
+  async create({ name, description, price, categoryId, subCategoryId, imageUrl, imagePublicId }) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
-        `INSERT INTO products (name, description, price, image_url, image_public_id)
-         VALUES (:name, :description, :price, :imageUrl, :imagePublicId)
+        `INSERT INTO products (name, description, price, category_id, sub_category_id, image_url, image_public_id)
+         VALUES (:name, :description, :price, :categoryId, :subCategoryId, :imageUrl, :imagePublicId)
          RETURNING id INTO :id`,
         {
           name,
           description,
           price,
+          categoryId,
+          subCategoryId,
           imageUrl,
           imagePublicId,
           id: { dir: require('oracledb').BIND_OUT, type: require('oracledb').NUMBER },
@@ -45,17 +47,19 @@ const productRepository = {
     });
   },
 
-  async update(id, { name, description, price, imageUrl, imagePublicId }) {
+  async update(id, { name, description, price, categoryId, subCategoryId, imageUrl, imagePublicId }) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
         `UPDATE products
          SET name = :name,
              description = :description,
              price = :price,
+               category_id = :categoryId,
+               sub_category_id = :subCategoryId,
              image_url = :imageUrl,
              image_public_id = :imagePublicId
          WHERE id = :id`,
-        { name, description, price, imageUrl, imagePublicId, id }
+             { name, description, price, categoryId, subCategoryId, imageUrl, imagePublicId, id }
       );
       return result.rowsAffected > 0;
     });

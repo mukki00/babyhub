@@ -13,9 +13,15 @@ CREATE TABLE products (
   name            VARCHAR2(255) NOT NULL,
   description     VARCHAR2(2000),
   price           NUMBER(10, 2) NOT NULL,
+  category_id     NUMBER,
+  sub_category_id NUMBER,
   image_url       VARCHAR2(1000),
   image_public_id VARCHAR2(255),
-  created_at      TIMESTAMP DEFAULT SYSTIMESTAMP
+  created_at      TIMESTAMP DEFAULT SYSTIMESTAMP,
+  CONSTRAINT fk_products_category
+    FOREIGN KEY (category_id) REFERENCES product_categories (id),
+  CONSTRAINT fk_products_sub_category
+    FOREIGN KEY (sub_category_id) REFERENCES product_sub_categories (id)
 );
 
 CREATE TABLE orders (

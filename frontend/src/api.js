@@ -39,6 +39,10 @@ export const adminUpdatePhoneNumber = (phoneNumber) =>
     headers: adminHeaders(),
   });
 
+export const adminListProductCategories = () => request('/admin/categories', { headers: adminHeaders() });
+export const adminListProductSubCategories = (categoryId) =>
+  request(`/admin/categories/${categoryId}/sub-categories`, { headers: adminHeaders() });
+
 export const adminListProducts = () => request('/admin/products', { headers: adminHeaders() });
 
 export const adminCreateProduct = (formData) =>

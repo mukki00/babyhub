@@ -2,6 +2,7 @@ const { Router } = require('express');
 const authController = require('../controllers/auth.controller');
 const adminController = require('../controllers/admin.controller');
 const productController = require('../controllers/product.controller');
+const categoryController = require('../controllers/category.controller');
 const orderController = require('../controllers/order.controller');
 const requireAdminAuth = require('../middleware/auth.middleware');
 const upload = require('../middleware/upload.middleware');
@@ -15,6 +16,9 @@ router.use(requireAdminAuth);
 
 router.get('/settings/phone', adminController.getPhoneNumber);
 router.put('/settings/phone', adminController.updatePhoneNumber);
+
+router.get('/categories', categoryController.list);
+router.get('/categories/:categoryId/sub-categories', categoryController.listSubCategories);
 
 router.get('/products', productController.list);
 router.post('/products', upload.single('image'), productController.create);

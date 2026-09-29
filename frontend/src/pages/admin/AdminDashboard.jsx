@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import {
   adminGetPhoneNumber,
   adminUpdatePhoneNumber,
+  adminListProductCategories,
+  adminListProductSubCategories,
   adminListProducts,
   adminCreateProduct,
   adminUpdateProduct,
@@ -9,7 +11,14 @@ import {
 } from '../../api.js';
 import AdminNav from '../../components/AdminNav.jsx';
 
-const EMPTY_FORM = { name: '', description: '', price: '', image: null };
+const EMPTY_FORM = {
+  name: '',
+  description: '',
+  price: '',
+  categoryId: '',
+  subCategoryId: '',
+  image: null,
+};
 const PHONE_PATTERN = /^\+94\d{9}$/;
 
 export default function AdminDashboard() {
@@ -18,6 +27,10 @@ export default function AdminDashboard() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [categoriesStatus, setCategoriesStatus] = useState('loading');
+  const [subCategories, setSubCategories] = useState([]);
+  const [subCategoriesStatus, setSubCategoriesStatus] = useState('ready');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [phoneStatus, setPhoneStatus] = useState('loading');
   const [phoneError, setPhoneError] = useState('');
@@ -34,6 +47,15 @@ export default function AdminDashboard() {
   }
 
   useEffect(load, []);
+
+  useEffect(() => {
+    adminListProductCategories()
+      .then((data) => {
+        setCategories(data);
+        setCategoriesStatus('ready');
+      })
+      .catch(() => setCategoriesStatus('error'));
+  }, []);
 
   useEffect(() => {
     adminGetPhoneNumber()
@@ -62,19 +84,55 @@ export default function AdminDashboard() {
     }
   }
 
+  async function loadSubCategories(categoryId, selectedSubCategoryId = '') {
+    if (!categoryId) {
+      setSubCategories([]);
+      setSubCategoriesStatus('ready');
+      return;
+    }
+    setSubCategoriesStatus('loading');
+    try {
+      const data = await adminListProductSubCategories(categoryId);
+      setSubCategories(data);
+      setSubCategoriesStatus('ready');
+      setForm((current) => ({ ...current, subCategoryId: String(selectedSubCategoryId || '') }));
+    } catch {
+      setSubCategories([]);
+      setSubCategoriesStatus('error');
+    }
+  }
+
+  function handleCategoryChange(categoryId) {
+    setForm((current) => ({ ...current, categoryId, subCategoryId: '' }));
+    loadSubCategories(categoryId);
+  }
+
   function startEdit(product) {
     setEditingId(product.id);
-    setForm({ name: product.name, description: product.description || '', price: product.price, image: null });
+    setForm({
+      name: product.name,
+      description: product.description || '',
+      price: product.price,
+      categoryId: String(product.category_id || ''),
+      subCategoryId: String(product.sub_category_id || ''),
+      image: null,
+    });
+    setSubCategories([]);
+    loadSubCategories(product.category_id, product.sub_category_id);
   }
 
   function startCreate() {
     setEditingId('new');
-    setForm(EMPTY_FORM);
+    setForm({ ...EMPTY_FORM });
+    setSubCategories([]);
+    setSubCategoriesStatus('ready');
   }
 
   function cancelEdit() {
     setEditingId(null);
-    setForm(EMPTY_FORM);
+    setForm({ ...EMPTY_FORM });
+    setSubCategories([]);
+    setSubCategoriesStatus('ready');
   }
 
   async function handleSave(e) {
@@ -84,6 +142,8 @@ export default function AdminDashboard() {
     data.append('name', form.name);
     data.append('description', form.description);
     data.append('price', form.price);
+    data.append('category_id', form.categoryId);
+    data.append('sub_category_id', form.subCategoryId);
     if (form.image) data.append('image', form.image);
 
     try {
@@ -153,6 +213,46 @@ export default function AdminDashboard() {
           <div className="form-grp">
             <label>Description</label>
             <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3}/>
+          </div>
+          <div className="form-grp">
+            <label htmlFor="product-category">Product Category</label>
+            <select
+              id="product-category"
+              value={form.categoryId}
+              onChange={(e) => handleCategoryChange(e.target.value)}
+              disabled={categoriesStatus !== 'ready'}
+              required
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>{category.product_category}</option>
+              ))}
+            </select>
+            {categoriesStatus === 'loading' && <p className="phone-hint">Loading categories…</p>}
+            {categoriesStatus === 'error' && <p className="form-error">Could not load product categories.</p>}
+            {categoriesStatus === 'ready' && categories.length === 0 && (
+              <p className="form-error">No product categories are available.</p>
+            )}
+          </div>
+          <div className="form-grp">
+            <label htmlFor="product-sub-category">Product Sub Category</label>
+            <select
+              id="product-sub-category"
+              value={form.subCategoryId}
+              onChange={(e) => setForm({ ...form, subCategoryId: e.target.value })}
+              disabled={!form.categoryId || subCategoriesStatus !== 'ready'}
+              required
+            >
+              <option value="">Select a subcategory</option>
+              {subCategories.map((subCategory) => (
+                <option key={subCategory.id} value={subCategory.id}>{subCategory.sub_category}</option>
+              ))}
+            </select>
+            {subCategoriesStatus === 'loading' && <p className="phone-hint">Loading subcategories…</p>}
+            {subCategoriesStatus === 'error' && <p className="form-error">Could not load subcategories.</p>}
+            {form.categoryId && subCategoriesStatus === 'ready' && subCategories.length === 0 && (
+              <p className="phone-hint">No subcategories are available for this category.</p>
+            )}
           </div>
           <div className="form-grp">
             <label>Price (Rs.)</label>
