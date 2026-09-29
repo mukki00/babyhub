@@ -125,7 +125,7 @@ export default function Home() {
                       aria-haspopup="true"
                       onClick={() => {
                         selectCategory(categoryId);
-                        setOpenCategoryId((current) => current === categoryId ? '' : categoryId);
+                        setOpenCategoryId(categoryId);
                         loadSubCategories(categoryId);
                       }}
                     >
@@ -199,6 +199,13 @@ export default function Home() {
                 <img src={p.image_url || 'https://placehold.co/400x533/f5e6ef/5a2040?text=Baby+Hub'} alt={p.name} className="product-img-main"/>
               </Link>
               <div className="product-info">
+                {(p.category_name || p.sub_category_name) && (
+                  <div className="product-taxonomy" aria-label="Product category">
+                    {p.category_name && <span>{p.category_name}</span>}
+                    {p.category_name && p.sub_category_name && <span aria-hidden="true">›</span>}
+                    {p.sub_category_name && <span>{p.sub_category_name}</span>}
+                  </div>
+                )}
                 <Link to={`/product/${p.id}`} className="product-name">{p.name}</Link>
                 <div className="product-price">Rs. {Number(p.price).toLocaleString()}.00</div>
                 <button className="btn-add-cart" onClick={() => addItem(p, 1)}>Add to Cart</button>

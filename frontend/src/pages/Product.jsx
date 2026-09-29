@@ -37,6 +37,13 @@ export default function Product() {
       </div>
       <div className="prod-info">
         <Link to="/" className="prod-back">← Back to Products</Link>
+        {(product.category_name || product.sub_category_name) && (
+          <div className="product-taxonomy product-taxonomy-detail" aria-label="Product category">
+            {product.category_name && <span>{product.category_name}</span>}
+            {product.category_name && product.sub_category_name && <span aria-hidden="true">›</span>}
+            {product.sub_category_name && <span>{product.sub_category_name}</span>}
+          </div>
+        )}
         <h1>{product.name}</h1>
         <div className="prod-price-big">Rs. {Number(product.price).toLocaleString()}.00</div>
         {product.description && <p className="prod-desc">{product.description}</p>}
