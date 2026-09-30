@@ -14,6 +14,7 @@ router.post('/login', authController.login);
 
 router.use(requireAdminAuth);
 
+router.put('/settings/password', authController.changePassword);
 router.get('/settings/phone', adminController.getPhoneNumber);
 router.put('/settings/phone', adminController.updatePhoneNumber);
 

@@ -85,6 +85,12 @@ export const createOrder = (order) => request('/orders', { method: 'POST', body:
 /* ---- Admin API ---- */
 export const adminLogin = (username, password) =>
   request('/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) });
+export const adminChangePassword = (currentPassword, newPassword) =>
+  request('/admin/settings/password', {
+    method: 'PUT',
+    body: JSON.stringify({ currentPassword, newPassword }),
+    headers: adminHeaders(),
+  });
 
 export const adminGetPhoneNumber = () =>
   cachedRequest('whatsapp-number', '/admin/settings/phone', { headers: adminHeaders() });

@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import {
   adminGetPhoneNumber,
   adminUpdatePhoneNumber,
+  adminChangePassword,
   adminListProductCategories,
   adminListProductSubCategories,
   adminListProducts,
@@ -38,6 +39,11 @@ export default function AdminDashboard() {
   const [phoneStatus, setPhoneStatus] = useState('loading');
   const [phoneError, setPhoneError] = useState('');
   const [savingPhone, setSavingPhone] = useState(false);
+  const [isEditingPassword, setIsEditingPassword] = useState(false);
+  const [passwordForm, setPasswordForm] = useState({ current: '', next: '', confirm: '' });
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
+  const [savingPassword, setSavingPassword] = useState(false);
 
   function load() {
     setStatus('loading');
@@ -94,6 +100,38 @@ export default function AdminDashboard() {
     setPhoneNumber(savedPhoneNumber);
     setPhoneError('');
     setIsEditingPhone(false);
+  }
+
+  async function handlePasswordSave(e) {
+    e.preventDefault();
+    setPasswordError('');
+    setPasswordMessage('');
+    if (passwordForm.next.length < 8) {
+      setPasswordError('New password must be at least 8 characters.');
+      return;
+    }
+    if (passwordForm.next !== passwordForm.confirm) {
+      setPasswordError('New password and confirm password must match.');
+      return;
+    }
+    setSavingPassword(true);
+    try {
+      await adminChangePassword(passwordForm.current, passwordForm.next);
+      setPasswordForm({ current: '', next: '', confirm: '' });
+      setIsEditingPassword(false);
+      setPasswordMessage('Admin password has been updated.');
+    } catch {
+      setPasswordError('Could not update the password. Check your current password and try again.');
+    } finally {
+      setSavingPassword(false);
+    }
+  }
+
+  function cancelPasswordEdit() {
+    setPasswordForm({ current: '', next: '', confirm: '' });
+    setPasswordError('');
+    setPasswordMessage('');
+    setIsEditingPassword(false);
   }
 
   async function loadSubCategories(categoryId, selectedSubCategoryId = '') {
@@ -239,6 +277,79 @@ export default function AdminDashboard() {
               </div>
             )}
           </>
+        )}
+      </form>
+      <form className="admin-form" onSubmit={handlePasswordSave}>
+        <h3>Admin Password</h3>
+        {passwordMessage && <p className="order-action-message" role="status">{passwordMessage}</p>}
+        {isEditingPassword ? (
+          <>
+            <div className="form-grp">
+              <label htmlFor="current-admin-password">Current Password</label>
+              <input
+                id="current-admin-password"
+                type="password"
+                value={passwordForm.current}
+                onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })}
+                placeholder="Enter your current password"
+                autoComplete="current-password"
+                required
+                autoFocus
+              />
+            </div>
+            <div className="form-grp">
+              <label htmlFor="new-admin-password">New Password</label>
+              <input
+                id="new-admin-password"
+                type="password"
+                value={passwordForm.next}
+                onChange={(e) => setPasswordForm({ ...passwordForm, next: e.target.value })}
+                placeholder="At least 8 characters"
+                autoComplete="new-password"
+                minLength={8}
+                required
+              />
+            </div>
+            <div className="form-grp">
+              <label htmlFor="confirm-admin-password">Confirm New Password</label>
+              <input
+                id="confirm-admin-password"
+                type="password"
+                value={passwordForm.confirm}
+                onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })}
+                placeholder="Re-enter your new password"
+                autoComplete="new-password"
+                minLength={8}
+                required
+              />
+            </div>
+            {passwordError && <p className="form-error">{passwordError}</p>}
+            <div className="admin-phone-actions">
+              <button type="submit" className="btn-primary" disabled={savingPassword}>
+                {savingPassword ? 'Updating…' : 'Update Password'}
+              </button>
+              <button type="button" className="btn-secondary" onClick={cancelPasswordEdit} disabled={savingPassword}>
+                Cancel
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="admin-phone-display">
+            <span>Password is set</span>
+            <button
+              type="button"
+              className="icon-action-btn edit-icon-btn"
+              aria-label="Edit admin password"
+              title="Edit admin password"
+              onClick={() => {
+                setPasswordError('');
+                setPasswordMessage('');
+                setIsEditingPassword(true);
+              }}
+            >
+              <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4z"/></svg>
+            </button>
+          </div>
         )}
       </form>
       <div className="admin-head">

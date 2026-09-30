@@ -14,6 +14,18 @@ const adminRepository = {
     });
   },
 
+  async findById(adminId) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `SELECT id, username, password_hash
+         FROM admins
+         WHERE id = :adminId`,
+        { adminId }
+      );
+      return result.rows[0] || null;
+    });
+  },
+
   async findPhoneNumber(adminId) {
     return withConnection(async (conn) => {
       const result = await conn.execute(
@@ -46,6 +58,19 @@ const adminRepository = {
          SET phone_number = :phoneNumber
          WHERE id = :adminId`,
         { adminId, phoneNumber },
+        { autoCommit: true }
+      );
+      return result.rowsAffected > 0;
+    });
+  },
+
+  async updatePassword(adminId, passwordHash) {
+    return withConnection(async (conn) => {
+      const result = await conn.execute(
+        `UPDATE admins
+         SET password_hash = :passwordHash
+         WHERE id = :adminId`,
+        { adminId, passwordHash },
         { autoCommit: true }
       );
       return result.rowsAffected > 0;
