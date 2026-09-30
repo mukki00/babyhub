@@ -24,6 +24,7 @@ const CATEGORY_MENU_ORDER = [
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [status, setStatus] = useState('loading');
   const [categories, setCategories] = useState([]);
   const [categoriesStatus, setCategoriesStatus] = useState('loading');
@@ -87,10 +88,18 @@ export default function Home() {
       .catch(() => setCategoriesStatus('error'));
   }, []);
 
-  const visibleProducts = products.filter((product) => (
-    String(product.category_id) === selectedCategoryId &&
-    (!selectedSubCategoryId || String(product.sub_category_id) === selectedSubCategoryId)
-  ));
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
+  const visibleProducts = products.filter((product) => {
+    const matchesSearch = !normalizedSearchQuery || [
+      product.name,
+      product.description,
+      product.category_name,
+      product.sub_category_name,
+    ].some((value) => String(value || '').toLowerCase().includes(normalizedSearchQuery));
+    const matchesCategory = String(product.category_id) === selectedCategoryId &&
+      (!selectedSubCategoryId || String(product.sub_category_id) === selectedSubCategoryId);
+    return matchesSearch && (normalizedSearchQuery ? true : matchesCategory);
+  });
 
   function selectCategory(categoryId) {
     setSelectedCategoryId(categoryId);
@@ -134,7 +143,9 @@ export default function Home() {
   const selectedCategoryLabel = selectedCategory?.product_category.trim().toLowerCase() === 'sale'
     ? 'Special Offers'
     : selectedCategory?.product_category;
-  const productListTitle = selectedSubCategory?.sub_category || selectedCategoryLabel || 'Our Products';
+  const productListTitle = normalizedSearchQuery
+    ? `Search results for “${searchQuery.trim()}”`
+    : selectedSubCategory?.sub_category || selectedCategoryLabel || 'Our Products';
   const orderedCategories = [...categories].sort((first, second) => {
     const firstIndex = CATEGORY_MENU_ORDER.indexOf(first.product_category.trim().toLowerCase());
     const secondIndex = CATEGORY_MENU_ORDER.indexOf(second.product_category.trim().toLowerCase());
@@ -250,6 +261,22 @@ export default function Home() {
 
       <section className="section">
         <div className="section-hd product-list-heading">
+          <form className="product-search" role="search" onSubmit={(event) => event.preventDefault()}>
+            <label className="sr-only" htmlFor="product-search-input">Search products</label>
+            <input
+              id="product-search-input"
+              type="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="what are you looking for?"
+            />
+            <button type="submit" aria-label="Search products">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m16.5 16.5 4 4" />
+              </svg>
+            </button>
+          </form>
           <nav className="product-breadcrumb" aria-label="Breadcrumb">
             <span>Home</span>
             {selectedCategoryLabel && (
@@ -274,7 +301,9 @@ export default function Home() {
         {status === 'error' && <p className="status-msg">Could not load products. Please try again later.</p>}
         {status === 'ready' && products.length === 0 && <p className="status-msg">No products available yet.</p>}
         {status === 'ready' && products.length > 0 && visibleProducts.length === 0 && (
-          <p className="status-msg">No products in this selection yet.</p>
+          <p className="status-msg">
+            {normalizedSearchQuery ? 'No products matched your search.' : 'No products in this selection yet.'}
+          </p>
         )}
 
         <div className="products-grid">

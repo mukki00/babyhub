@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baby Hub Website User Guide</title>
+<style>
+@page { size: A4 landscape; margin: 7mm; }
+:root { --ink: #1a1a2e; --muted: #62647a; --pink: #cd579a; --blue: #5a93c6; --border: #d6e2ec; --paper: #fff; --soft: #faf6f1; }
+* { box-sizing: border-box; }
+html, body { margin: 0; color: var(--ink); font-family: Arial, Helvetica, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.guide-page { width: 100%; height: 196mm; display: flex; flex-direction: column; break-after: page; page-break-after: always; overflow: hidden; }
+.guide-page:last-child { break-after: auto; page-break-after: auto; }
+.page-header { height: 11mm; display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.eyebrow { margin: 0 0 1mm; color: var(--pink); font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.section-label { margin: 0; color: var(--muted); font-size: 8pt; }
+.page-number { color: var(--blue); font-size: 10pt; font-weight: 700; }
+.page-title-row { min-height: 22mm; display: flex; align-items: center; justify-content: space-between; gap: 8mm; padding: 2mm 0; }
+h1 { margin: 0 0 1.5mm; font-size: 19pt; line-height: 1.1; }
+.intro { max-width: 220mm; margin: 0; color: var(--muted); font-size: 9pt; line-height: 1.35; }
+.sample-badge { flex: 0 0 auto; padding: 2mm 3mm; border: 1px solid #efd1e0; border-radius: 2mm; background: #fff6fa; color: #9b3970; font-size: 7.5pt; font-weight: 700; }
+.page-content { min-height: 0; flex: 1; display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(63mm, .8fr); gap: 5mm; }
+.screenshot-frame { position: relative; min-width: 0; min-height: 0; align-self: start; aspect-ratio: var(--shot-ratio); margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2mm; background: var(--soft); box-shadow: 0 1mm 3mm rgba(26, 26, 46, .12); }
+.screenshot-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.arrow-layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.arrow-layer text { fill: white; font-size: 18px; font-weight: 700; font-family: Arial, sans-serif; }
+.instructions { min-width: 0; padding: 4mm; border: 1px solid var(--border); border-radius: 2mm; background: #fbfcfe; }
+.instructions h2 { margin: 0 0 2mm; color: var(--blue); font-size: 11pt; }
+.instructions ol { margin: 0 0 4mm; padding-left: 5mm; }
+.instructions li { margin: 0 0 2.4mm; padding-left: .5mm; font-size: 8.4pt; line-height: 1.35; }
+.callout-title { margin-top: 4mm !important; padding-top: 3mm; border-top: 1px solid var(--border); }
+.callout-list { list-style: none; padding: 0 !important; }
+.callout-list li { display: grid; grid-template-columns: 6mm 1fr; align-items: start; gap: 2mm; margin-bottom: 2mm; padding: 0; }
+.callout-number { display: inline-flex; width: 5mm; height: 5mm; align-items: center; justify-content: center; border-radius: 50%; background: var(--pink); color: white; font-size: 7pt; font-weight: 700; line-height: 1; }
+.page-footer { height: 7mm; display: flex; align-items: flex-end; justify-content: space-between; padding-top: 1mm; color: var(--muted); font-size: 7pt; }
+@media screen {
+  body { padding: 10mm; background: #e8edf3; }
+  .guide-page { max-width: 283mm; margin: 0 auto 10mm; padding: 0; background: white; box-shadow: 0 2mm 8mm rgba(26, 26, 46, .16); }
+}
+</style>
+</head>
+<body>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Customer workflow · 1 of 4</p></div>
+      <span class="page-number">01</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Browse the storefront</h1><p class="intro">The home page opens on Special Offers. Use the category bar to browse, then choose a product to see its details.</p></div>
+      
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/01-storefront-home.png" alt="Browse the storefront screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-0-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="316.0625" y1="69.59375" x2="242.0625" y2="107.59375" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-0-1)"/>
+      <circle cx="316.0625" cy="69.59375" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="316.0625" y="74.59375" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-0-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="347" y1="802.953125" x2="273" y2="856.953125" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-0-2)"/>
+      <circle cx="347" cy="802.953125" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="347" y="807.953125" text-anchor="middle">2</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-0-3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="1202.5" y1="20" x2="1276.5" y2="42.796875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-0-3)"/>
+      <circle cx="1202.5" cy="20" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="1202.5" y="25" text-anchor="middle">3</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Use the category bar to browse departments. On smaller screens, use the ‹ and › arrows to move through the menu.</li><li>Select a product card to open the product page. The product category and subcategory appear above its name.</li><li>Use the cart icon in the header to review items at any time.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Browse product categories</span></li><li><span class="callout-number">2</span><span>Open a product</span></li><li><span class="callout-number">3</span><span>Open your cart</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 01 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Customer workflow · browsing</p></div>
+      <span class="page-number">02</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Browse by category</h1><p class="intro">Hover over a category on desktop or tap it on a touch screen to reveal its subcategories.</p></div>
+      
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/02-category-subcategories.png" alt="Browse by category screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-1-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="626.078125" y1="69.59375" x2="552.078125" y2="107.59375" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-1-1)"/>
+      <circle cx="626.078125" cy="69.59375" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="626.078125" y="74.59375" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-1-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="696.375" y1="99.6875" x2="622.375" y2="153.6875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-1-2)"/>
+      <circle cx="696.375" cy="99.6875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="696.375" y="104.6875" text-anchor="middle">2</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Choose a category in the top menu.</li><li>Choose a subcategory in the list below it to filter products.</li><li>To change the selection, choose another category and subcategory.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Choose a category</span></li><li><span class="callout-number">2</span><span>Choose a subcategory</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 02 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Customer workflow · product details</p></div>
+      <span class="page-number">03</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Review a product</h1><p class="intro">The product page shows its category, subcategory, description, price, and purchase actions.</p></div>
+      
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/03-product-details.png" alt="Review a product screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-2-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="938.5" y1="133.484375" x2="1012.5" y2="171.484375" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-2-1)"/>
+      <circle cx="938.5" cy="133.484375" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="938.5" y="138.484375" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-2-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="938.5" y1="307.75" x2="1012.5" y2="361.75" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-2-2)"/>
+      <circle cx="938.5" cy="307.75" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="938.5" y="312.75" text-anchor="middle">2</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-2-3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="938.5" y1="389.75" x2="1012.5" y2="427.75" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-2-3)"/>
+      <circle cx="938.5" cy="389.75" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="938.5" y="394.75" text-anchor="middle">3</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Check the category breadcrumb and product information.</li><li>Adjust the quantity with − and +.</li><li>Choose Add to Cart to continue shopping, or Order via WhatsApp to proceed to the cart checkout.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Review category and subcategory</span></li><li><span class="callout-number">2</span><span>Set quantity</span></li><li><span class="callout-number">3</span><span>Add to cart or order through WhatsApp</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 03 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Customer workflow · checkout</p></div>
+      <span class="page-number">04</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Review and place an order</h1><p class="intro">Checkout saves the order and opens WhatsApp with the order details ready to send.</p></div>
+      
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/04-cart-checkout.png" alt="Review and place an order screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-3-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="608" y1="211.8828125" x2="534" y2="249.8828125" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-3-1)"/>
+      <circle cx="608" cy="211.8828125" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="608" y="216.8828125" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-3-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="1052" y1="291.75" x2="1126" y2="345.75" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-3-2)"/>
+      <circle cx="1052" cy="291.75" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="1052" y="296.75" text-anchor="middle">2</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-3-3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="1052" y1="503.421875" x2="1126" y2="541.421875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-3-3)"/>
+      <circle cx="1052" cy="503.421875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="1052" y="508.421875" text-anchor="middle">3</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Use +/− to adjust quantity or Remove to take an item out of the cart.</li><li>Enter your name and phone number. Customer numbers may use +947xxxxxxxx or 07xxxxxxxx.</li><li>Choose Checkout via WhatsApp. The order is saved first, then WhatsApp opens with the order reference and item list.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Change quantity or remove an item</span></li><li><span class="callout-number">2</span><span>Enter customer details</span></li><li><span class="callout-number">3</span><span>Save and open WhatsApp</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 04 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Admin tools · sign-in</p></div>
+      <span class="page-number">05</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Sign in to the admin area</h1><p class="intro">Admin pages require an authorized account. The screenshot is illustrative and contains no real credentials.</p></div>
+      <span class="sample-badge">Illustrative admin data</span>
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/05-admin-login.png" alt="Sign in to the admin area screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-4-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="786.5" y1="462.28125" x2="712.5" y2="500.28125" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-4-1)"/>
+      <circle cx="786.5" cy="462.28125" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="786.5" y="467.28125" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-4-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="786.5" y1="526.875" x2="712.5" y2="580.875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-4-2)"/>
+      <circle cx="786.5" cy="526.875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="786.5" y="531.875" text-anchor="middle">2</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Open Admin Login from the footer or go to /admin/login.</li><li>Enter the username and password assigned to your admin account, then choose Sign In.</li><li>After sign-in, use Products and Orders in the admin navigation. Log Out ends the admin session.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Enter admin credentials</span></li><li><span class="callout-number">2</span><span>Sign in</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 05 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Admin tools · product management</p></div>
+      <span class="page-number">06</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Manage products</h1><p class="intro">The Products page lists products with their category, subcategory, price, and available actions.</p></div>
+      <span class="sample-badge">Illustrative admin data</span>
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/06-admin-products.png" alt="Manage products screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-5-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="632.5" y1="272.25" x2="558.5" y2="310.25" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-5-1)"/>
+      <circle cx="632.5" cy="272.25" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="632.5" y="277.25" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-5-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="1147.8828125" y1="364.046875" x2="1221.8828125" y2="418.046875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-5-2)"/>
+      <circle cx="1147.8828125" cy="364.046875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="1147.8828125" y="369.046875" text-anchor="middle">2</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-5-3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="232.5" y1="507.4375" x2="158.5" y2="545.4375" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-5-3)"/>
+      <circle cx="232.5" cy="507.4375" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="232.5" y="512.4375" text-anchor="middle">3</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-5-4" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="615.265625" y1="431.890625" x2="541.265625" y2="485.890625" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-5-4)"/>
+      <circle cx="615.265625" cy="431.890625" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="615.265625" y="436.890625" text-anchor="middle">4</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Choose + New Product to add an item. Use Edit to change an existing product or Delete to remove one.</li><li>The + control at the far left expands a row to show its description; − collapses it.</li><li>The table can scroll horizontally on narrower screens.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Edit the WhatsApp contact number</span></li><li><span class="callout-number">2</span><span>Create a product</span></li><li><span class="callout-number">3</span><span>Expand product description</span></li><li><span class="callout-number">4</span><span>Review product category data</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 06 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Admin tools · contact settings</p></div>
+      <span class="page-number">07</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Edit the WhatsApp contact</h1><p class="intro">The contact number is read-only until the pencil icon is selected.</p></div>
+      <span class="sample-badge">Illustrative admin data</span>
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1050">
+        <img src="user-guide-assets/07-admin-phone-edit.png" alt="Edit the WhatsApp contact screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1050" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-6-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="450.5" y1="269.75" x2="376.5" y2="307.75" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-6-1)"/>
+      <circle cx="450.5" cy="269.75" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="450.5" y="274.75" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-6-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="450.5" y1="312.25" x2="376.5" y2="366.25" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-6-2)"/>
+      <circle cx="450.5" cy="312.25" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="450.5" y="317.25" text-anchor="middle">2</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Select the pencil icon on the Products page.</li><li>Enter a number in +947xxxxxxxx format only.</li><li>Choose Save Phone Number to apply the change, or Cancel to restore the saved value.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Edit contact phone</span></li><li><span class="callout-number">2</span><span>Save or cancel the change</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 07 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Admin tools · product entry</p></div>
+      <span class="page-number">08</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Add or edit a product</h1><p class="intro">The same form is used when creating a product or editing an existing product.</p></div>
+      <span class="sample-badge">Illustrative admin data</span>
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1250">
+        <img src="user-guide-assets/08-admin-new-product.png" alt="Add or edit a product screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1250" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-7-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="450.5" y1="539" x2="376.5" y2="577" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-7-1)"/>
+      <circle cx="450.5" cy="539" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="450.5" y="544" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-7-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="450.5" y1="733.6875" x2="376.5" y2="787.6875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-7-2)"/>
+      <circle cx="450.5" cy="733.6875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="450.5" y="738.6875" text-anchor="middle">2</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-7-3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="450.5" y1="912.375" x2="376.5" y2="950.375" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-7-3)"/>
+      <circle cx="450.5" cy="912.375" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="450.5" y="917.375" text-anchor="middle">3</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-7-4" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="399.0703125" y1="1036.46875" x2="325.0703125" y2="1090.46875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-7-4)"/>
+      <circle cx="399.0703125" cy="1036.46875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="399.0703125" y="1041.46875" text-anchor="middle">4</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Enter the product name and description.</li><li>Select a product category, then its matching subcategory.</li><li>Enter the price and choose an image file if available.</li><li>Choose Save. To edit an item, return to Products and choose Edit on its row.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Enter product name and description</span></li><li><span class="callout-number">2</span><span>Select category and subcategory</span></li><li><span class="callout-number">3</span><span>Set price and image</span></li><li><span class="callout-number">4</span><span>Save the product</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 08 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Admin tools · order management</p></div>
+      <span class="page-number">09</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Track and update orders</h1><p class="intro">Orders are grouped by status so the team can review each stage of fulfillment.</p></div>
+      <span class="sample-badge">Illustrative admin data</span>
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1250">
+        <img src="user-guide-assets/09-admin-orders.png" alt="Track and update orders screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1250" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-8-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="794" y1="242.6875" x2="720" y2="280.6875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-8-1)"/>
+      <circle cx="794" cy="242.6875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="794" y="247.6875" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-8-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="246" y1="344.78125" x2="172" y2="398.78125" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-8-2)"/>
+      <circle cx="246" cy="344.78125" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="246" y="349.78125" text-anchor="middle">2</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-8-3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="993.859375" y1="356.78125" x2="1067.859375" y2="394.78125" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-8-3)"/>
+      <circle cx="993.859375" cy="356.78125" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="993.859375" y="361.78125" text-anchor="middle">3</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Use Orders, Shipped, Returned, and Refund tabs to switch between statuses.</li><li>Select + to inspect order line items; − closes the expanded details.</li><li>Pending orders can be edited, deleted, or marked shipped. Shipped orders support delivery tracking; returned orders support receipt, reshipment, or refund actions.</li><li>Confirm status-changing actions carefully; some actions cannot be undone.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Switch between order statuses</span></li><li><span class="callout-number">2</span><span>Expand order items</span></li><li><span class="callout-number">3</span><span>Open order actions</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 09 / 10</span></footer>
+  </section>
+<section class="guide-page">
+    <header class="page-header">
+      <div><p class="eyebrow">Baby Hub · User Guide</p><p class="section-label">Admin tools · order editing</p></div>
+      <span class="page-number">10</span>
+    </header>
+    <div class="page-title-row">
+      <div><h1>Edit order details</h1><p class="intro">The order editor lets an admin correct customer details and line items before saving.</p></div>
+      <span class="sample-badge">Illustrative admin data</span>
+    </div>
+    <div class="page-content">
+      <figure class="screenshot-frame" style="--shot-ratio: 1440 / 1250">
+        <img src="user-guide-assets/10-admin-edit-order.png" alt="Edit order details screenshot">
+        <svg class="arrow-layer" viewBox="0 0 1440 1250" preserveAspectRatio="none" aria-hidden="true"><g class="arrow-callout">
+      <defs><marker id="arrow-9-1" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="794" y1="586.9921875" x2="720" y2="624.9921875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-9-1)"/>
+      <circle cx="794" cy="586.9921875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="794" y="591.9921875" text-anchor="middle">1</text>
+    </g>
+<g class="arrow-callout">
+      <defs><marker id="arrow-9-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M2,2 L10,6 L2,10" fill="none" stroke="#cd579a" stroke-width="2"/></marker></defs>
+      <line x1="794" y1="767.96875" x2="720" y2="821.96875" stroke="#cd579a" stroke-width="3" marker-end="url(#arrow-9-2)"/>
+      <circle cx="794" cy="767.96875" r="16" fill="#cd579a" stroke="#ffffff" stroke-width="3"/>
+      <text x="794" y="772.96875" text-anchor="middle">2</text>
+    </g></svg>
+      </figure>
+      <aside class="instructions">
+        <h2>Steps</h2>
+        <ol><li>Review the order reference and update the customer name or phone number if needed.</li><li>Adjust item quantities/prices or remove a line item. The total is recalculated from the items.</li><li>Choose Save Changes to apply the update, or Cancel to close without saving.</li></ol>
+        <h2 class="callout-title">Screenshot callouts</h2>
+        <ol class="callout-list"><li><span class="callout-number">1</span><span>Edit customer and line-item details</span></li><li><span class="callout-number">2</span><span>Save or cancel changes</span></li></ol>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Use your assigned admin account for protected tools. Never share login credentials.</span><span>Baby Hub · 10 / 10</span></footer>
+  </section>
+</body>
+</html>

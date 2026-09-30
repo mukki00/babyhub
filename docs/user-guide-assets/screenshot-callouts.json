@@ -1,0 +1,308 @@
+{
+  "screenshots": {
+    "01-storefront-home.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Browse product categories",
+          "x": 190.453125,
+          "y": 86.59375,
+          "width": 103.21875,
+          "height": 42
+        },
+        {
+          "number": 2,
+          "label": "Open a product",
+          "x": 151.5,
+          "y": 837.359375,
+          "width": 243,
+          "height": 39.1875
+        },
+        {
+          "number": 3,
+          "label": "Open your cart",
+          "x": 1264.5,
+          "y": 30.796875,
+          "width": 24,
+          "height": 24
+        }
+      ]
+    },
+    "02-category-subcategories.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Choose a category",
+          "x": 509.875,
+          "y": 86.59375,
+          "width": 84.40625,
+          "height": 42
+        },
+        {
+          "number": 2,
+          "label": "Choose a subcategory",
+          "x": 502.375,
+          "y": 128.59375,
+          "width": 240,
+          "height": 50.1875
+        }
+      ]
+    },
+    "03-product-details.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Review category and subcategory",
+          "x": 736.5,
+          "y": 162.390625,
+          "width": 552,
+          "height": 18.1875
+        },
+        {
+          "number": 2,
+          "label": "Set quantity",
+          "x": 736.5,
+          "y": 341.75,
+          "width": 552,
+          "height": 40
+        },
+        {
+          "number": 3,
+          "label": "Add to cart or order through WhatsApp",
+          "x": 736.5,
+          "y": 403.75,
+          "width": 552,
+          "height": 48
+        }
+      ]
+    },
+    "04-cart-checkout.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Change quantity or remove an item",
+          "x": 144,
+          "y": 192.59375,
+          "width": 780,
+          "height": 114.578125
+        },
+        {
+          "number": 2,
+          "label": "Enter customer details",
+          "x": 981,
+          "y": 312.453125,
+          "width": 290,
+          "height": 66.59375
+        },
+        {
+          "number": 3,
+          "label": "Save and open WhatsApp",
+          "x": 981,
+          "y": 517.421875,
+          "width": 290,
+          "height": 48
+        }
+      ]
+    },
+    "05-admin-login.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Enter admin credentials",
+          "x": 552.5,
+          "y": 396.6875,
+          "width": 320,
+          "height": 207.1875
+        },
+        {
+          "number": 2,
+          "label": "Sign in",
+          "x": 552.5,
+          "y": 557.875,
+          "width": 320,
+          "height": 46
+        }
+      ]
+    },
+    "06-admin-products.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Edit the WhatsApp contact number",
+          "x": 542.5,
+          "y": 294.25,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "number": 2,
+          "label": "Create a product",
+          "x": 1155.265625,
+          "y": 398.046875,
+          "width": 133.234375,
+          "height": 40
+        },
+        {
+          "number": 3,
+          "label": "Expand product description",
+          "x": 144.5,
+          "y": 531.4375,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "number": 4,
+          "label": "Review product category data",
+          "x": 424.6875,
+          "y": 462.84375,
+          "width": 233.15625,
+          "height": 46.09375
+        }
+      ]
+    },
+    "07-admin-phone-edit.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Edit contact phone",
+          "x": 161.5,
+          "y": 286.25,
+          "width": 430,
+          "height": 43
+        },
+        {
+          "number": 2,
+          "label": "Save or cancel the change",
+          "x": 161.5,
+          "y": 343.25,
+          "width": 430,
+          "height": 46
+        }
+      ]
+    },
+    "08-admin-new-product.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1250
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Enter product name and description",
+          "x": 161.5,
+          "y": 555.5,
+          "width": 430,
+          "height": 43
+        },
+        {
+          "number": 2,
+          "label": "Select category and subcategory",
+          "x": 161.5,
+          "y": 765.6875,
+          "width": 430,
+          "height": 44
+        },
+        {
+          "number": 3,
+          "label": "Set price and image",
+          "x": 161.5,
+          "y": 928.875,
+          "width": 430,
+          "height": 43
+        },
+        {
+          "number": 4,
+          "label": "Save the product",
+          "x": 161.5,
+          "y": 1067.46875,
+          "width": 327.140625,
+          "height": 46
+        }
+      ]
+    },
+    "09-admin-orders.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1250
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Switch between order statuses",
+          "x": 144,
+          "y": 259.1875,
+          "width": 1152,
+          "height": 43
+        },
+        {
+          "number": 2,
+          "label": "Expand order items",
+          "x": 158,
+          "y": 384.78125,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "number": 3,
+          "label": "Open order actions",
+          "x": 1051.859375,
+          "y": 378.78125,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    "10-admin-edit-order.png": {
+      "viewport": {
+        "width": 1440,
+        "height": 1250
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "label": "Edit customer and line-item details",
+          "x": 440,
+          "y": 381.015625,
+          "width": 560,
+          "height": 487.953125
+        },
+        {
+          "number": 2,
+          "label": "Save or cancel changes",
+          "x": 467,
+          "y": 801.96875,
+          "width": 506,
+          "height": 40
+        }
+      ]
+    }
+  }
+}
